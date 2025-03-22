@@ -1,0 +1,59 @@
+﻿@page "/view"
+@using DataLibrary
+@using DataLibrary.Models
+@using Microsoft.Extensions.Configuration
+
+<!-- Injections -->
+@inject IUserData _data
+@inject IConfiguration _config
+@inject NavigationManager nav
+
+<PageTitle>View Records</PageTitle>
+
+<h3>Release Note Records:</h3>
+
+
+
+@if (notes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var rn in notes)
+    {
+        <p>
+            @rn.Notes_GUID @rn.Application_Name @rn.Note_Content @rn.Created_by @rn.Created_date
+        </p>
+    }
+    //Console.WriteLine("Done loading people.");
+}
+
+@code {
+    List<ReleaseNotesModel> notes = new();
+    private UserModel currentUser;
+    protected async override Task OnInitializedAsync()
+    {
+        currentUser = _data.GetUserSignOnInfo();
+        Console.WriteLine(currentUser.email);
+        Console.WriteLine("This is running.");
+        if (currentUser == null)
+        {
+            nav.NavigateTo("/signin");
+        }
+     
+        try
+        {
+            string sql = "select * from ReleaseNotes";
+            notes = await _data.LoadData<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+            var connectionString = _config.GetConnectionString("default");
+            Console.WriteLine($"Connection String: {connectionString}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+    }
+
+}

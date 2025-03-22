@@ -1,0 +1,51 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using DataLibrary
+@using DataLibrary.Models
+@using Microsoft.Extensions.Configuration
+
+<!-- Injections -->
+@inject IUserData _data
+@inject IConfiguration _config
+@inject NavigationManager nav
+
+<PageTitle>Home</PageTitle>
+
+<h1>
+    Release Notes Management Tool
+
+</h1>
+
+Please choose an operation to perform using the buttons below:
+
+<button class="btn btn-primary" @onclick="GoToView">Show Existing Release Note Records</button>
+
+@code{
+    List<ReleaseNotesModel> notes = new();
+    private UserModel currentUser;
+    protected async override Task OnInitializedAsync()
+    {
+        currentUser = _data.GetUserSignOnInfo();
+        
+        if (currentUser == null)
+        {
+
+            nav.NavigateTo("/signin");
+        }
+
+        
+
+    }
+
+    private void GoToView()
+    {
+        try
+        {
+            nav.NavigateTo("/view");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    } 
+}
