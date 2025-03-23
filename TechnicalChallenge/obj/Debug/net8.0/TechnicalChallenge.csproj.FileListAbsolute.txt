@@ -117,3 +117,15 @@ C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\TechnicalChallenge.pdb
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\TechnicalChallenge.genruntimeconfig.cache
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\ref\TechnicalChallenge.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\View.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.JSInterop.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\BlazorBootstrap.dll

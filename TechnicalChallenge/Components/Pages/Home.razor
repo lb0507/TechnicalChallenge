@@ -5,7 +5,7 @@
 @using Microsoft.Extensions.Configuration
 
 <!-- Injections -->
-@inject IUserData _data
+@inject IUserData _user
 @inject IConfiguration _config
 @inject NavigationManager nav
 
@@ -18,14 +18,16 @@
 
 Please choose an operation to perform using the buttons below:
 
-<button class="btn btn-primary" @onclick="GoToView">Show Existing Release Note Records</button>
-
+<p>
+    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Create a New Release Note Record </Button>
+    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToView"> Show Existing Release Note Records </Button>
+</p>
 @code{
     List<ReleaseNotesModel> notes = new();
     private UserModel currentUser;
     protected async override Task OnInitializedAsync()
     {
-        currentUser = _data.GetUserSignOnInfo();
+        currentUser = _user.GetUserSignOnInfo();
         
         if (currentUser == null)
         {
@@ -33,19 +35,11 @@ Please choose an operation to perform using the buttons below:
             nav.NavigateTo("/signin");
         }
 
-        
-
     }
-
-    private void GoToView()
+    public void GoToView()
     {
-        try
-        {
-            nav.NavigateTo("/view");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-    } 
+
+        nav.NavigateTo("/view", forceLoad: true);
+    }
+   
 }

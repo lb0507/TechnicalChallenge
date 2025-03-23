@@ -6,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddBlazorBootstrap();
 builder.Services.AddSingleton<IDataAccess, DataAccess>();//remove this later, this was from the YT tutorial
 builder.Services.AddSingleton<IUserData, UserData>();//create an instance of user
+builder.Services.AddSingleton<IReleaseNotesData, ReleaseNotesData>();//create an instance of the release notes
 
 var app = builder.Build();
 

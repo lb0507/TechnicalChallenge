@@ -8,12 +8,16 @@
 
 <!-- Link to the page -->
 @page "/signin"
+@layout EmptyLayout
+<!--Don't display the current user or sign-out button-->
+
 <!-- allows user to interact -->
 @rendermode InteractiveServer
 
 @using DataLibrary
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
+
 
 <!-- Injections -->
 @inject IUserData _data
@@ -24,21 +28,24 @@
 <PageTitle>Sign In</PageTitle>
 <h1>Sign In</h1>
 
-<div class="row my-4">
-    <h4>idk</h4>
-    <div class="col-6">
-        <EditForm Model="Usr" OnValidSubmit="LoggingIn">
-            <InputText @bind-Value=Usr.email/>
-            <InputText @bind-Value=Usr.userpassword />
-        </EditForm>
-    </div>
-</div>
 
-<button class="btn btn-primary" @onclick="LoggingIn">Sign In</button>
+
+<EditForm Model="@Usr" OnValidSubmit="LoggingIn" OnInvalidSubmit="InvalidForm">
+    <InputText @bind-Value="Usr.email" placeholder="Email Address" />
+    <InputText @bind-Value="Usr.userpassword" placeholder="Password" />
+    <input type="submit" value="Sign In" class="btn btn-primary" />
+</EditForm>
+
+
+<button class="btn btn-primary" @onclick="ClearForm">Clear Form</button>
 
 
 @code {
-    /*/
+
+    
+
+    
+    /*/  NOTE: EDIT THIS LATER TO IMPLEMENT EDITFORM AND EDITCONTEXT
     @if (users == null)
     {
             <p><em>Loading...</em></p>
@@ -56,62 +63,84 @@
         */
 
     List<UserModel> users = new();
-    private UserModel Usr = new UserModel();
+    private UserModel Usr = new UserModel(); 
+    private UserModel currentUser = new UserModel();
     //<button class="btn btn-warning" @onclick="ClearForm">Clear Form</button>
     private async Task LoggingIn() 
     {
     try
     {
-        string sql = "select email, userpassword from users where email = @email";
+        
+        string sql = "select * from users where email = @email";
 
         UserModel credentials = await _data.LogIn<UserModel, dynamic>(sql, new { email = Usr.email }, Usr.userpassword, _config.GetConnectionString("default"));
         //var connectionString = _config.GetConnectionString("default");
         //Console.WriteLine($"insert Connection String: {connectionString}");
-        Console.WriteLine(credentials);
+        //Console.WriteLine(credentials);
         //errorUnable to cast object of type 'System.Collections.Generic.List`1[DataLibrary.Models.UserModel]' to type 'DataLibrary.Models.UserModel'.
         //this is returning System.Collections.Generic.List`1[TechnicalChallenge.Models.UserModel]
         if (credentials!= null)//Login successful if the query pulled any users from the database
         {
-            
+
             Console.WriteLine("Login successful!");
             nav.NavigateTo("/");
         }
         else
         {
             Console.WriteLine("Invalid credentials.");
+            //Refresh the text fields
+            ClearForm();
         }
 
             //await OnInitializedAsync();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
 
     }
 
 
     protected override async Task OnInitializedAsync()
     {
-        /*Usr = _data.GetUserSignOnInfo();
-        if (Usr != null)
-       {
-
-            nav.NavigateTo("/");
-        }
-        */
+        
         try
-        { //Do we need this LoadData?
+        { //Do we need this LoadData? - probably not
+            currentUser = _data.GetUserSignOnInfo();
+            //See if user is already signed in, if so, redirect to home page
+            if (currentUser != null)
+            {
 
+                nav.NavigateTo("/");
+            //add a pop up or something informing the user that they are already signed in
+            }
+            /*
             string sql = "select * from users";
             users = await _data.LoadData<UserModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
             var connectionString = _config.GetConnectionString("default");
             Console.WriteLine($"Connection String: {connectionString}");
+            */
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
 
+    
     }
+        //Clear the input fields
+    protected void ClearForm()
+    {
+         Usr = new UserModel();
+    }
+
+    void InvalidForm()
+    {
+        Console.WriteLine("Invalid form.");
+    }
+
+    
+    
+
 }

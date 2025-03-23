@@ -1,0 +1,111 @@
+﻿@page "/add"
+@rendermode InteractiveServer
+@using DataLibrary
+@using DataLibrary.Models
+@using Microsoft.Extensions.Configuration
+@using BlazorBootstrap.Components
+
+
+<!-- Injections -->
+@inject IUserData _data
+@inject IReleaseNotesData _notesData
+@inject IConfiguration _config
+@inject NavigationManager nav
+
+<PageTitle>Add Records</PageTitle>
+
+<h3>Release Notes Management Tool</h3>
+<p>Create a New Release Note Record</p>
+<p>Please enter the Release Note details using the form below:</p>
+<!-- remove the at symbol from the submit mappings-->
+<EditForm Model="@ReleaseNotes" OnValidSubmit="NoteAdded" OnInvalidSubmit="InvalidForm">
+    <select class="select-element" @bind="ReleaseNotes.Application_Name">
+        <option value="" disabled selected>Select an Application...</option>
+        <option value="Invoice Management Tool">Invoice Management Tool</option>
+        <option value="Parts Management Tool">Parts Management Tool</option>
+    </select>
+    <InputText @bind-Value="ReleaseNotes.Note_Content" placeholder="Enter Release Note" />
+    <input type="submit" value="Save Record" class="btn btn-primary"/>
+</EditForm>
+
+<button class="btn btn-primary" @onclick="ClearForm">Clear Form</button>
+@code {
+    //<option value="selection1">Select an Application...</option>
+
+    private bool saved = false;
+    private string userFullName = "";
+    ReleaseNotesModel ReleaseNotes = new ReleaseNotesModel();
+    List<ReleaseNotesModel> notes = new();
+    //declare the user
+    private UserModel currentUser;
+
+    protected async override Task OnInitializedAsync()
+    {
+        //Check if user is signed in
+        currentUser = _data.GetUserSignOnInfo();
+        //if no user is signed in, redirect to sign in page
+        if (currentUser == null)
+        {
+            nav.NavigateTo("/signin");
+        }
+
+
+    }
+    private async Task NoteAdded() 
+    {                              
+        try
+        {
+            ReleaseNotes.Created_by = currentUser.FirstName + " " + currentUser.LastName;
+            Console.WriteLine(userFullName);
+
+            ReleaseNotes.Created_date = DateTime.Now;
+
+            Console.WriteLine(ReleaseNotes.Application_Name);
+            Console.WriteLine(ReleaseNotes.Note_Content);
+            string sql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (UUID(), @Application_Name, @Note_Content, @Created_by, @Created_date);";
+
+            try
+            {
+                //structure the query to insert the new note into the database, I made it vertical for readability
+                await _notesData.SaveNote(sql, new
+                {
+                    Application_Name = ReleaseNotes.Application_Name,
+                    Note_Content = ReleaseNotes.Note_Content,
+                    Created_by = ReleaseNotes.Created_by,
+                    Created_date = ReleaseNotes.Created_date
+                }, _config.GetConnectionString("default"));
+                _notesData.SetLastAdded(ReleaseNotes);
+                saved = true;
+            }
+            catch (Exception e)
+            {//if there is an error, display whether or not the note was saved
+                Console.WriteLine("Note saved: " + saved);
+            }
+           
+            //Clear the form after the note is added
+           // ClearForm();    
+            if (saved)
+            {
+                nav.NavigateTo("/confirmation");
+            }
+            // is the line below problematic?
+            await OnInitializedAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("e.Message");
+        }
+
+    }
+   
+    void InvalidForm()
+    {
+        Console.WriteLine("Invalid form.");
+    }
+    //Clear the input fields
+    protected void ClearForm()
+    {
+        ReleaseNotes = new ReleaseNotesModel();
+    }
+
+}

@@ -43,5 +43,6 @@ namespace DataLibrary
         }
         public UserModel GetUserSignOnInfo() { return _model; }
 
+        public void SignOutUser() { _model = null; }
     }
 }

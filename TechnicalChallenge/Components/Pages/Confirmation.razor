@@ -1,0 +1,70 @@
+﻿@page "/confirmation"
+@rendermode InteractiveServer
+@using DataLibrary
+@using DataLibrary.Models
+@using Microsoft.Extensions.Configuration
+@using BlazorBootstrap.Components
+
+
+<!-- Injections -->
+@inject IUserData _user
+@inject IReleaseNotesData _notesData
+@inject IConfiguration _config
+@inject NavigationManager nav
+
+<PageTitle>Confirmation</PageTitle>
+
+
+<h3>Confirmation</h3>
+<p>You have successsfully saved a new Release Note record.</p>
+<div> 
+    Application Name: @addedNote.Application_Name
+    <br />
+    Release Note: @addedNote.Note_Content
+    <br />
+    Created By: @addedNote.Created_by
+    <br />
+    Created Date: @addedNote.Created_date.ToString("dd MMMMM yyyy HH:MM")
+    <br />
+    <br />
+    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToAdd"> Create a New Release Note Record </Button>
+    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToView"> Show Existing Release Note Records </Button>
+</div>
+
+@code {
+
+
+
+    private ReleaseNotesModel addedNote;
+    private UserModel currentUser;
+    protected async override Task OnInitializedAsync()
+    {
+        currentUser = _user.GetUserSignOnInfo();
+
+        if (currentUser == null)
+        {
+
+            nav.NavigateTo("/signin");
+        }
+        //load the Release Notes that was just added
+        addedNote = _notesData.GetLastAdded();
+        //if there isn't one, then the user navigated to this page from the URL, redirect them to /add
+        if (addedNote == null)
+        {
+            nav.NavigateTo("/add");
+        }
+    }
+    //InvalidOperationException: The constraint reference
+    //  'ReleaseNotesModel' could not be resolved to a type. Register the constraint type with 'Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap'.
+    public void GoToAdd()
+    {
+        _notesData.SetLastAdded(null);
+        nav.NavigateTo("/add", forceLoad: true);
+    }
+    public void GoToView()
+    {
+
+        _notesData.SetLastAdded(null);
+        nav.NavigateTo("/view", forceLoad: true);
+    }
+}

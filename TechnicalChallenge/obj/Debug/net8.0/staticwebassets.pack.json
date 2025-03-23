@@ -2,19 +2,11 @@
   "Files": [
     {
       "Id": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
-      "PackagePath": "staticwebassets\\TechnicalChallenge.9e7vty14ay.bundle.scp.css"
+      "PackagePath": "staticwebassets\\TechnicalChallenge.itc6pc14wl.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
-    },
-    {
-      "Id": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\wwwroot\\bootstrap\\bootstrap.min.css",
-      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
-    },
-    {
-      "Id": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\wwwroot\\bootstrap\\bootstrap.min.css.map",
-      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
       "Id": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\wwwroot\\favicon.png",

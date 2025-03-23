@@ -1,0 +1,42 @@
+﻿@rendermode InteractiveServer
+@using DataLibrary
+@using DataLibrary.Models
+@inject IUserData _user
+@inject IConfiguration _config
+@inject NavigationManager nav
+
+<div class="float-end">
+    Signed in as: @displayName
+    <button class="btn btn-primary" @onclick="SignOut">Sign Out</button>
+    <ThemeSwitcher Position="DropdownMenuPosition.End" />
+</div>
+
+
+@code {
+    private UserModel currentUser = new();
+    private String displayName = "";
+    
+    public void SignOut()
+    {
+        Console.WriteLine("Signing out...");
+        _user.SignOutUser();
+        nav.NavigateTo("/signin");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        { 
+            currentUser = _user.GetUserSignOnInfo();
+            if (currentUser != null)
+            {
+                displayName = currentUser.FirstName + " " + currentUser.LastName;
+            }
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+}

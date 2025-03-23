@@ -12,5 +12,6 @@ namespace DataLibrary
         Task<List<T>> LoadData<T, U>(string sql, U parameters, string connectionString);
         Task<UserModel> LogIn<T, U>(string sql, U parameters, string password, string connectionString);
         UserModel GetUserSignOnInfo();
+        void SignOutUser();
     }
 }

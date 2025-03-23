@@ -1,59 +1,92 @@
 ﻿@page "/view"
+@rendermode InteractiveServer
 @using DataLibrary
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
+@using BlazorBootstrap.Components
+
 
 <!-- Injections -->
 @inject IUserData _data
+@inject IReleaseNotesData _notesData
 @inject IConfiguration _config
 @inject NavigationManager nav
 
 <PageTitle>View Records</PageTitle>
 
-<h3>Release Note Records:</h3>
+<h3>Release Notes Management Tool</h3>
+<p>Release Note Records:</p>
+<p>@numNotes Record(s) Found</p>
 
+<!-- Build the table for displaying release note data as a grid-->
+<Grid @ref="grid"
+TItem="ReleaseNotesModel"
+Class="table table-hover table-bordered table-striped"
+DataProvider="ReleaseNotesDataProvider"
+AllowFiltering="true"
+Responsive="true">
 
+    <GridColumns>
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID">
+            @context.Notes_GUID
+        </GridColumn>
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name">
+            @context.Application_Name
+        </GridColumn>
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content">
+            @context.Note_Content
+        </GridColumn>
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by">
+            @context.Created_by
+        </GridColumn>
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date">
+            @context.Created_date.ToString("dd MMM yyyy")
+        </GridColumn>
+    </GridColumns>
 
-@if (notes == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    @foreach (var rn in notes)
-    {
-        <p>
-            @rn.Notes_GUID @rn.Application_Name @rn.Note_Content @rn.Created_by @rn.Created_date
-        </p>
-    }
-    //Console.WriteLine("Done loading people.");
-}
+</Grid>
+<p>
+    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Add Another Release Note </Button>
+</p>
 
 @code {
+
+    //declare a list to store the release notes data
     List<ReleaseNotesModel> notes = new();
+    //declare the user
     private UserModel currentUser;
+    private Grid<ReleaseNotesModel> grid;
+    int numNotes = 0;
     protected async override Task OnInitializedAsync()
     {
+        //Check if user is signed in
         currentUser = _data.GetUserSignOnInfo();
-        Console.WriteLine(currentUser.email);
-        Console.WriteLine("This is running.");
+        //if no user is signed in, redirect to sign in page
         if (currentUser == null)
         {
             nav.NavigateTo("/signin");
         }
-     
+
+        //fetch release notes data from the database for the grid and store it in the notes list
         try
         {
-            string sql = "select * from ReleaseNotes";
-            notes = await _data.LoadData<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
-            var connectionString = _config.GetConnectionString("default");
-            Console.WriteLine($"Connection String: {connectionString}");
+            string sql = "select * from ReleaseNotes"; 
+            
+            notes = await _notesData.LoadReleaseNotes<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+            numNotes = notes.Count;
+            //var connectionString = _config.GetConnectionString("default");
+            //Console.WriteLine($"Connection String: {connectionString}");
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
 
+    }
+    //Data provider for the grid, use the data from the notes list to populate the grid
+    private async Task<GridDataProviderResult<ReleaseNotesModel>> ReleaseNotesDataProvider(GridDataProviderRequest<ReleaseNotesModel> request)
+    {
+        return await Task.FromResult(request.ApplyTo(notes));
     }
 
 }
