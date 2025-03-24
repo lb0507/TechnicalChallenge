@@ -11,8 +11,9 @@ namespace DataLibrary
     {
         Task<List<ReleaseNotesModel>> LoadReleaseNotes<ReleaseNotesModel, U>(string sql, U parameters, string connectionString);
         Task SaveNote<T>(string sql, T parameters, string connectionString);
-        void SetLastAdded(ReleaseNotesModel newlyAdded);
+        void SetNoteByParam(string Notes_GUID, string Application_Name, string Note_Content, string Created_by, DateTime Created_date);
+        void SetNote(ReleaseNotesModel releaseNotesModel);
         ReleaseNotesModel GetLastAdded();
-        //void Refresh();
+        
     }
 }

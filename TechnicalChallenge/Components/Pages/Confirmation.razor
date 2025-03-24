@@ -16,6 +16,8 @@
 
 
 <h3>Confirmation</h3>
+
+<!--Display the properties of the newly inserted Release Note-->
 <p>You have successsfully saved a new Release Note record.</p>
 <div> 
     Application Name: @addedNote.Application_Name
@@ -39,6 +41,7 @@
     private UserModel currentUser;
     protected async override Task OnInitializedAsync()
     {
+        //check if the user is signed in
         currentUser = _user.GetUserSignOnInfo();
 
         if (currentUser == null)
@@ -51,6 +54,10 @@
         //if there isn't one, then the user navigated to this page from the URL, redirect them to /add
         if (addedNote == null)
         {
+            //The ReleaseNotesModel being passed in from ReleaseNotesData is null
+            //This was not an issue previous to imlementing EditContext for the validation check
+            
+            Console.WriteLine("Note is null");
             nav.NavigateTo("/add");
         }
     }
@@ -58,13 +65,13 @@
     //  'ReleaseNotesModel' could not be resolved to a type. Register the constraint type with 'Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap'.
     public void GoToAdd()
     {
-        _notesData.SetLastAdded(null);
+        _notesData.SetNote(null);
         nav.NavigateTo("/add", forceLoad: true);
     }
     public void GoToView()
     {
 
-        _notesData.SetLastAdded(null);
+        _notesData.SetNote(null);
         nav.NavigateTo("/view", forceLoad: true);
     }
 }

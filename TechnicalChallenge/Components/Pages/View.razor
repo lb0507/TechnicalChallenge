@@ -6,14 +6,17 @@
 @using BlazorBootstrap.Components
 
 
+
 <!-- Injections -->
 @inject IUserData _data
 @inject IReleaseNotesData _notesData
 @inject IConfiguration _config
 @inject NavigationManager nav
 
-<PageTitle>View Records</PageTitle>
 
+
+<PageTitle>View Records</PageTitle>
+<Modal IsServiceModal="true" />
 <h3>Release Notes Management Tool</h3>
 <p>Release Note Records:</p>
 <p>@numNotes Record(s) Found</p>
@@ -21,25 +24,30 @@
 <!-- Build the table for displaying release note data as a grid-->
 <Grid @ref="grid"
 TItem="ReleaseNotesModel"
+AllowRowClick="true"
 Class="table table-hover table-bordered table-striped"
 DataProvider="ReleaseNotesDataProvider"
 AllowFiltering="true"
+AllowPaging="true"
+PageSize="5"
+AllowSorting="true"
+OnRowDoubleClick="OnRowDoubleClick"
 Responsive="true">
 
     <GridColumns>
-        <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID">
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID" SortKeySelector="item => item.Notes_GUID">
             @context.Notes_GUID
         </GridColumn>
-        <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name">
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name" SortKeySelector="item => item.Application_Name">
             @context.Application_Name
         </GridColumn>
-        <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content">
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content" SortKeySelector="item => item.Note_Content">
             @context.Note_Content
         </GridColumn>
-        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by">
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by" SortKeySelector="item => item.Created_by">
             @context.Created_by
         </GridColumn>
-        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date">
+        <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date" SortKeySelector="item => item.Created_date">
             @context.Created_date.ToString("dd MMM yyyy")
         </GridColumn>
     </GridColumns>
@@ -50,7 +58,7 @@ Responsive="true">
 </p>
 
 @code {
-
+    [Inject] ModalService ModalService { get; set; } = default!;
     //declare a list to store the release notes data
     List<ReleaseNotesModel> notes = new();
     //declare the user
@@ -71,7 +79,7 @@ Responsive="true">
         try
         {
             string sql = "select * from ReleaseNotes"; 
-            
+
             notes = await _notesData.LoadReleaseNotes<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
             numNotes = notes.Count;
             //var connectionString = _config.GetConnectionString("default");
@@ -89,4 +97,19 @@ Responsive="true">
         return await Task.FromResult(request.ApplyTo(notes));
     }
 
+    private async Task OnRowDoubleClick(GridRowEventArgs<ReleaseNotesModel> args)
+    {
+        Console.WriteLine($"Item: {args.Item}");
+        Console.WriteLine($"Note_Content: {args.Item?.Note_Content}");
+        await ModalService.ShowAsync(new ModalOption { Type = ModalType.Primary, Title = "Release Note", Message = $"{args.Item?.Note_Content}" });
+
+        
+    }
+   
+
+        
+    
 }
+    
+
+

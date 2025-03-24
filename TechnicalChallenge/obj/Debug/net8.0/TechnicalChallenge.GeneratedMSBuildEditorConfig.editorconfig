@@ -44,10 +44,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/People.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQZW9wbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/SignOutButton.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaWduT3V0QnV0dG9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/_Imports.razor]
@@ -76,6 +68,14 @@ build_metadata.AdditionalFiles.CssScope = b-joyh1zgqeh
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-icp0r8oicm
 
+[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Example.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFeGFtcGxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5h4vjmmbof
+
+[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-0i4holn1fo
+
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/SignIn.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaWduSW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-62wugeadc5
@@ -83,3 +83,7 @@ build_metadata.AdditionalFiles.CssScope = b-62wugeadc5
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/View.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xWaWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-f6m5j3twh4
+
+[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/SignOutButton.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaWduT3V0QnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-57zp86n77n

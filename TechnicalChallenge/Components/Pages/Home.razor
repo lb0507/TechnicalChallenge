@@ -11,17 +11,30 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>
-    Release Notes Management Tool
+<div class="split left">
+    <h1> Release Notes Management Tool</h1>
+    <div> <p>Please choose an operation to perform using the buttons below:</p></div>
+</div>
 
-</h1>
 
-Please choose an operation to perform using the buttons below:
 
-<p>
-    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Create a New Release Note Record </Button>
-    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToView"> Show Existing Release Note Records </Button>
-</p>
+<div class="split right">
+   
+
+        <div> <button class="add" @onclick="GoToAdd">Create a New Release Note Record</button> </div>
+
+        <div> <button class="view" @onclick="GoToView">Show Existing Release Note Records</button></div>
+
+
+    
+</div>
+
+
+
+    
+   
+    
+
 @code{
     List<ReleaseNotesModel> notes = new();
     private UserModel currentUser;
@@ -40,6 +53,11 @@ Please choose an operation to perform using the buttons below:
     {
 
         nav.NavigateTo("/view", forceLoad: true);
+    }
+    public void GoToAdd()
+    {
+
+        nav.NavigateTo("/add");
     }
    
 }

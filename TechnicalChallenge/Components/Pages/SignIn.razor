@@ -26,42 +26,62 @@
 
 <!-- Link to the page -->
 <PageTitle>Sign In</PageTitle>
-<h1>Sign In</h1>
+
+<div class="header">
+    <h1>Sign In</h1>
+</div>
+
+<div class="body">
+    <div> <input type="text" @bind-value="Usr.email" placeholder="Email" class="email-field" /> </div>
+
+    @if (showPassword)
+    {
+       
+        <div> <input type="text" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
+
+
+    }
+    else
+    {
+        <div> <input type="password" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
+    }
+
+    <input type="checkbox" id="show-password" @onclick="ToggleIsHidden">
+    <label for="show-password"> Show </label>
+
+    <div> <input type="submit" value="Sign In" @onclick="LoggingIn" class="btn btn-login" /> <button class="btn btn-clear" @onclick="ClearForm">Clear Form</button></div>
+
+
+</div>
 
 
 
-<EditForm Model="@Usr" OnValidSubmit="LoggingIn" OnInvalidSubmit="InvalidForm">
-    <InputText @bind-Value="Usr.email" placeholder="Email Address" />
-    <InputText @bind-Value="Usr.userpassword" placeholder="Password" />
-    <input type="submit" value="Sign In" class="btn btn-primary" />
-</EditForm>
 
 
-<button class="btn btn-primary" @onclick="ClearForm">Clear Form</button>
+
 
 
 @code {
 
-    
 
-    
+
     /*/  NOTE: EDIT THIS LATER TO IMPLEMENT EDITFORM AND EDITCONTEXT
     @if (users == null)
     {
-            <p><em>Loading...</em></p>
-        }
-        else
-        {
-            @foreach (var u in users)
-    {
-            <p>
-                @u.FirstName @u.LastName @u.email @u.userpassword
-            </p>
+                <p><em>Loading...</em></p>
             }
+            else
+            {
+                @foreach (var u in users)
+    {
+                <p>
+                    @u.FirstName @u.LastName @u.email @u.userpassword
+                </p>
+                }
 
     }
-        */
-
+            */
+    private bool showPassword = false;
     List<UserModel> users = new();
     private UserModel Usr = new UserModel(); 
     private UserModel currentUser = new UserModel();
@@ -70,7 +90,7 @@
     {
     try
     {
-        
+
         string sql = "select * from users where email = @email";
 
         UserModel credentials = await _data.LogIn<UserModel, dynamic>(sql, new { email = Usr.email }, Usr.userpassword, _config.GetConnectionString("default"));
@@ -92,7 +112,7 @@
             ClearForm();
         }
 
-            //await OnInitializedAsync();
+        //await OnInitializedAsync();
     }
     catch (Exception e)
     {
@@ -104,43 +124,47 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
-        try
-        { //Do we need this LoadData? - probably not
-            currentUser = _data.GetUserSignOnInfo();
-            //See if user is already signed in, if so, redirect to home page
-            if (currentUser != null)
-            {
 
-                nav.NavigateTo("/");
-            //add a pop up or something informing the user that they are already signed in
-            }
-            /*
-            string sql = "select * from users";
-            users = await _data.LoadData<UserModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
-            var connectionString = _config.GetConnectionString("default");
-            Console.WriteLine($"Connection String: {connectionString}");
-            */
-        }
-        catch (Exception e)
+    try
+    { //Do we need this LoadData? - probably not
+        currentUser = _data.GetUserSignOnInfo();
+        //See if user is already signed in, if so, redirect to home page
+        if (currentUser != null)
         {
-            Console.WriteLine(e.Message);
-        }
 
-    
+            nav.NavigateTo("/");
+            //add a pop up or something informing the user that they are already signed in
+        }
+        /*
+        string sql = "select * from users";
+        users = await _data.LoadData<UserModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+        var connectionString = _config.GetConnectionString("default");
+        Console.WriteLine($"Connection String: {connectionString}");
+        */
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
+
+
     }
         //Clear the input fields
     protected void ClearForm()
     {
-         Usr = new UserModel();
+    Usr = new UserModel();
     }
 
     void InvalidForm()
     {
-        Console.WriteLine("Invalid form.");
+    Console.WriteLine("Invalid form.");
     }
 
-    
-    
+    //negate the value, if isHidden is false, set it to true, if it is true, set to false
+    public void ToggleIsHidden()
+        {
+    showPassword = (!showPassword);
+        }
+
 
 }

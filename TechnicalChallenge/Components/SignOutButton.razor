@@ -5,11 +5,18 @@
 @inject IConfiguration _config
 @inject NavigationManager nav
 
-<div class="float-end">
-    Signed in as: @displayName
-    <button class="btn btn-primary" @onclick="SignOut">Sign Out</button>
-    <ThemeSwitcher Position="DropdownMenuPosition.End" />
+<div>
+    <button class="dashboard" @onclick="GoToHome">Dashboard</button>
+
+
 </div>
+<div class="body">
+    Signed in as: @displayName <button class="btn btn-link" @onclick="SignOut">Sign Out</button>
+    
+    
+</div>
+
+
 
 
 @code {
@@ -21,6 +28,11 @@
         Console.WriteLine("Signing out...");
         _user.SignOutUser();
         nav.NavigateTo("/signin");
+    }
+    public void GoToHome()
+    {
+        Console.WriteLine("Navigating to Home Page...");
+        nav.NavigateTo("/");
     }
     protected override async Task OnInitializedAsync()
     {

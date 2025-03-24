@@ -8,8 +8,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddBlazorBootstrap();
 builder.Services.AddSingleton<IDataAccess, DataAccess>();//remove this later, this was from the YT tutorial
-builder.Services.AddSingleton<IUserData, UserData>();//create an instance of user
-builder.Services.AddSingleton<IReleaseNotesData, ReleaseNotesData>();//create an instance of the release notes
+builder.Services.AddSingleton<IUserData, UserData>();//create a singleton for the user data
+builder.Services.AddTransient<IReleaseNotesData, ReleaseNotesData>();// add API services for the release notes
 
 var app = builder.Build();
 

@@ -1,0 +1,92 @@
+
+.split[b-0i4holn1fo] {
+    height: 91.5%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left[b-0i4holn1fo] {
+    left: 0;
+    background-color: rgb(270, 220, 140);
+}
+
+.right[b-0i4holn1fo] {
+    right: 0;
+    background-color: white;
+}
+
+h1[b-0i4holn1fo] {
+    padding: 40px 30px;
+    text-align: center;
+    background-color: rgb(295, 245, 165);
+    border: 5px solid blue;
+    color: rgb(25, 101, 214);
+    font-family: monospace, "Lucida Console", "Courier New";
+    font-size: 35px;
+    font-weight: bold;
+    border-radius: 30px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+p[b-0i4holn1fo] {
+    font-size: 28px;
+    font-family: monospace, "Lucida Console", "Courier New";
+    color: rgb(25, 101, 214);
+    margin-top: 100px;
+    margin-left: 10%;
+    width: 75%;
+}
+
+
+.btn:hover[b-0i4holn1fo] {
+    opacity: 0.6;
+}
+
+.btn:active[b-0i4holn1fo] {
+    color: black;
+}
+
+.add[b-0i4holn1fo] {
+    color: white;
+    font-size: 26px;
+    font-family: monospace, "Lucida Console", "Courier New";
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    /* set background color to light blue*/
+    background-color: rgb(85, 161, 250);
+    margin-left: 0%;
+    transition: opacity 0.5s;
+    height: 300px;
+    margin-top: -30px;
+    width: 100%;
+    border: none;
+}
+
+.view[b-0i4holn1fo] {
+    color: white;
+    font-size: 26px;
+    font-family: monospace, "Lucida Console", "Courier New";
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    background-color: rgb(0, 200, 150);
+    margin-left: 0%;
+    transition: opacity 0.5s;
+    height: 300px;
+    margin-bottom: 0px;
+    border: none;
+    width: 100%;
+}
+
+main-layout[b-0i4holn1fo] {
+    height: 100vh;
+    margin: 1rem;
+    display: grid;
+}

@@ -3,7 +3,7 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "TechnicalChallenge.h2qmemg3v1.styles.css",
+      "Route": "TechnicalChallenge.i1wjio5c23.styles.css",
       "AssetFile": "TechnicalChallenge.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -17,7 +17,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6348"
+          "Value": "10214"
         },
         {
           "Name": "Content-Type",
@@ -25,11 +25,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s=\""
+          "Value": "\"9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
         },
         {
           "Name": "Link",
@@ -39,11 +39,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "h2qmemg3v1"
+          "Value": "i1wjio5c23"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s="
+          "Value": "sha256-9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU="
         },
         {
           "Name": "label",
@@ -66,7 +66,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6348"
+          "Value": "10214"
         },
         {
           "Name": "Content-Type",
@@ -74,11 +74,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s=\""
+          "Value": "\"9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
         },
         {
           "Name": "Link",
@@ -88,7 +88,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s="
+          "Value": "sha256-9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU="
         }
       ]
     },

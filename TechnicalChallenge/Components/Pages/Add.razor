@@ -4,7 +4,7 @@
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
 @using BlazorBootstrap.Components
-
+@using System.ComponentModel.DataAnnotations
 
 <!-- Injections -->
 @inject IUserData _data
@@ -13,29 +13,72 @@
 @inject NavigationManager nav
 
 <PageTitle>Add Records</PageTitle>
-
+<Modal IsServiceModal="true" />
 <h3>Release Notes Management Tool</h3>
 <p>Create a New Release Note Record</p>
 <p>Please enter the Release Note details using the form below:</p>
-<!-- remove the at symbol from the submit mappings-->
-<EditForm Model="@ReleaseNotes" OnValidSubmit="NoteAdded" OnInvalidSubmit="InvalidForm">
+
+<!--Form to add a new release note, it's an EditForm with EditContext using OnValidSubmit-->
+<!--This means it checks if the form is valid before we submit it, which prevents users from populating the database with invalid entries-->
+<!--In this case, we are checking to see if the input text field is null-->
+<EditForm EditContext="@editContext" OnValidSubmit="ConfirmAction" >
+    <DataAnnotationsValidator />
+    <label class="select-input-label">Application: <span class="text-danger">*</span></label>
     <select class="select-element" @bind="ReleaseNotes.Application_Name">
         <option value="" disabled selected>Select an Application...</option>
         <option value="Invoice Management Tool">Invoice Management Tool</option>
         <option value="Parts Management Tool">Parts Management Tool</option>
     </select>
-    <InputText @bind-Value="ReleaseNotes.Note_Content" placeholder="Enter Release Note" />
-    <input type="submit" value="Save Record" class="btn btn-primary"/>
+    <div class="form-group row mb-3">
+        <label class="text-input-label">Release Note Text: <span class="text-danger">*</span></label>
+        <div class="col-md-10">
+            <TextAreaInput @bind-Value="@ReleaseNotes.Note_Content" Rows="3" Placeholder="Enter Release Note" />
+            <ValidationMessage For="@(() => ReleaseNotes.Note_Content)" />
+        </div>
+    </div>
+    
+    <div class="col-md-12 text-right">
+    <input type="submit" value="Save Record" class="btn btn-primary" />
+        
+    </div>
+    
+   
 </EditForm>
 
+<!--A button that clears all input from the form, i.e. resets it-->
 <button class="btn btn-primary" @onclick="ClearForm">Clear Form</button>
-@code {
-    //<option value="selection1">Select an Application...</option>
 
+<!--The template for the modal to confirm the save-->
+<Modal @ref="confirmActionModal" title="Confirm Save" UseStaticBackdrop="true" CloseOnEscape="false">
+    <BodyTemplate>
+        Are you sure you wish to save this record?
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Cancel</Button>
+        <Button Color="ButtonColor.Primary" @onclick="NoteAdded">Confirm</Button>
+    </FooterTemplate>
+</Modal>
+
+
+@code {
+    //inject the necessary service to be able to build the modal
+    [Inject] ModalService ModalService { get; set; } = default!;
+    //declare the ReleaseNotesModel that will be used to store the user input values
+    private ReleaseNotesModel ReleaseNotes = new ReleaseNotesModel();
+    //declare the EditContext that will be used to validate the user input
+    private EditContext? editContext;
+
+    protected override void OnInitialized()
+    {
+        //initialize the EditContext with the ReleaseNotesModel so it will recognize the model's properties
+        editContext = new EditContext(ReleaseNotes);
+        base.OnInitialized();
+    }
     private bool saved = false;
     private string userFullName = "";
-    ReleaseNotesModel ReleaseNotes = new ReleaseNotesModel();
-    List<ReleaseNotesModel> notes = new();
+    
+    //I dont think this is used List<ReleaseNotesModel> notes = new();
+
     //declare the user
     private UserModel currentUser;
 
@@ -55,35 +98,53 @@
     {                              
         try
         {
+            //concatenate the user's first and last name to create the Created_by field
             ReleaseNotes.Created_by = currentUser.FirstName + " " + currentUser.LastName;
             Console.WriteLine(userFullName);
 
+            //get and store the date the form was submitted
             ReleaseNotes.Created_date = DateTime.Now;
 
+            //debugging statements, can remove
+           
             Console.WriteLine(ReleaseNotes.Application_Name);
             Console.WriteLine(ReleaseNotes.Note_Content);
-            string sql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (UUID(), @Application_Name, @Note_Content, @Created_by, @Created_date);";
 
+            //sql query to insert the new note into the database
+            string sql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @Created_date);";
+            //generate a new GUID for the note id, convert it to a string to match the type in the database
+            string Notes_GUID = Guid.NewGuid().ToString();
             try
             {
-                //structure the query to insert the new note into the database, I made it vertical for readability
+                //close the modal
+                await OnHideModalClick();
+                
+                //structure the task call to insert the new note into the database, I made it vertical for readability
                 await _notesData.SaveNote(sql, new
                 {
+                    Notes_GUID,
                     Application_Name = ReleaseNotes.Application_Name,
                     Note_Content = ReleaseNotes.Note_Content,
                     Created_by = ReleaseNotes.Created_by,
                     Created_date = ReleaseNotes.Created_date
                 }, _config.GetConnectionString("default"));
-                _notesData.SetLastAdded(ReleaseNotes);
+               
+                //set the ReleaseNotesModel in ReleaseNotesData to the new note so we can display it on the confirmation page
+                //Since we altered the model to check for valid input, there was an error trying to set the note directly
+                //thus we set it by parameter
+                _notesData.SetNoteByParam(Notes_GUID, ReleaseNotes.Application_Name, ReleaseNotes.Note_Content, ReleaseNotes.Created_by, ReleaseNotes.Created_date);
+
+                //if we made it to here without an exception, the note was saved
                 saved = true;
+
+                
             }
             catch (Exception e)
             {//if there is an error, display whether or not the note was saved
                 Console.WriteLine("Note saved: " + saved);
             }
-           
-            //Clear the form after the note is added
-           // ClearForm();    
+
+            //if the note was successfully inserted, navigate to the confirmation page
             if (saved)
             {
                 nav.NavigateTo("/confirmation");
@@ -98,14 +159,44 @@
 
     }
    
-    void InvalidForm()
-    {
-        Console.WriteLine("Invalid form.");
-    }
-    //Clear the input fields
     protected void ClearForm()
     {
+        
+        //clear all input from the form
+        //essentially resetting the ReleaseNotesModel and EditContext
         ReleaseNotes = new ReleaseNotesModel();
+        editContext = new EditContext(ReleaseNotes);
     }
 
+    private Modal confirmActionModal = default!;
+    private async Task ConfirmAction()
+    {
+        //I need to check if the below line is still necessary
+        //It might be good to have anyways
+        //but it might also be redundant
+        if (editContext.Validate())
+        {
+            Console.WriteLine("confirm running");
+            await confirmActionModal.ShowAsync();
+        }
+    }
+    //user selected cancel on the modal, close it
+    private async Task OnHideModalClick()
+    {
+        await confirmActionModal.HideAsync();
+        
+    }
+
+    //declare the required fields for the new release note submission 
+    public class ReleaseNotesModel
+    {
+        [Required(ErrorMessage = "Select an application.")]
+        public string? Application_Name { get; set; }
+        [Required(ErrorMessage = "Enter a note.")]
+        public string? Note_Content { get; set; }
+        public string Created_by { get; set; }
+        public DateTime Created_date { get; set; }
+    }
+    
 }
+

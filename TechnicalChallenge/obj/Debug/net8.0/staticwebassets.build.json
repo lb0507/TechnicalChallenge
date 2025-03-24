@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DoSLzrNGgY6EV19EJGQyIH0xIr06NjohMKHDU6dExik=",
+  "Hash": "ej5gKov+yQAoyMhecGWIy7e0sLtu8GIvei+c0PxjNbY=",
   "Source": "TechnicalChallenge",
   "BasePath": "_content/TechnicalChallenge",
   "Mode": "Default",
@@ -262,8 +262,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "h2qmemg3v1",
-      "Integrity": "hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s=",
+      "Fingerprint": "i1wjio5c23",
+      "Integrity": "9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TechnicalChallenge.styles.css"
@@ -283,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "itc6pc14wl",
-      "Integrity": "mgCf/iTSVs/pDbO9c8UXaciDbKos5qBL1gGIg0ATTtw=",
+      "Fingerprint": "65jqjo0hjk",
+      "Integrity": "lomhKlD/Oj7K4L/EoXa9HZE0vF5TBel6JMWOpjmSZJo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css"
@@ -1359,6 +1359,51 @@
       ]
     },
     {
+      "Route": "TechnicalChallenge.65jqjo0hjk.bundle.scp.css",
+      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10000"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lomhKlD/Oj7K4L/EoXa9HZE0vF5TBel6JMWOpjmSZJo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "65jqjo0hjk"
+        },
+        {
+          "Name": "label",
+          "Value": "TechnicalChallenge.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lomhKlD/Oj7K4L/EoXa9HZE0vF5TBel6JMWOpjmSZJo="
+        }
+      ]
+    },
+    {
       "Route": "TechnicalChallenge.bundle.scp.css",
       "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
       "Selectors": [],
@@ -1369,7 +1414,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6134"
+          "Value": "10000"
         },
         {
           "Name": "Content-Type",
@@ -1377,11 +1422,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"mgCf/iTSVs/pDbO9c8UXaciDbKos5qBL1gGIg0ATTtw=\""
+          "Value": "\"lomhKlD/Oj7K4L/EoXa9HZE0vF5TBel6JMWOpjmSZJo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1391,12 +1436,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mgCf/iTSVs/pDbO9c8UXaciDbKos5qBL1gGIg0ATTtw="
+          "Value": "sha256-lomhKlD/Oj7K4L/EoXa9HZE0vF5TBel6JMWOpjmSZJo="
         }
       ]
     },
     {
-      "Route": "TechnicalChallenge.h2qmemg3v1.styles.css",
+      "Route": "TechnicalChallenge.i1wjio5c23.styles.css",
       "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TechnicalChallenge.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1410,7 +1455,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6348"
+          "Value": "10214"
         },
         {
           "Name": "Content-Type",
@@ -1418,11 +1463,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s=\""
+          "Value": "\"9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
         },
         {
           "Name": "Link",
@@ -1432,60 +1477,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "h2qmemg3v1"
+          "Value": "i1wjio5c23"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s="
+          "Value": "sha256-9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU="
         },
         {
           "Name": "label",
           "Value": "TechnicalChallenge.styles.css"
-        }
-      ]
-    },
-    {
-      "Route": "TechnicalChallenge.itc6pc14wl.bundle.scp.css",
-      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6134"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mgCf/iTSVs/pDbO9c8UXaciDbKos5qBL1gGIg0ATTtw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "itc6pc14wl"
-        },
-        {
-          "Name": "label",
-          "Value": "TechnicalChallenge.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-mgCf/iTSVs/pDbO9c8UXaciDbKos5qBL1gGIg0ATTtw="
         }
       ]
     },
@@ -1504,7 +1504,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6348"
+          "Value": "10214"
         },
         {
           "Name": "Content-Type",
@@ -1512,11 +1512,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s=\""
+          "Value": "\"9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 16:42:24 GMT"
+          "Value": "Mon, 24 Mar 2025 11:02:35 GMT"
         },
         {
           "Name": "Link",
@@ -1526,7 +1526,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hywAv00N6ZTfah8YBcsB5bMi76arTnqTHyfk+MrE8+s="
+          "Value": "sha256-9irfY8zzBQp6Cz0LjMbphUIT9C4qr59WBfru7Q7n2wU="
         }
       ]
     }

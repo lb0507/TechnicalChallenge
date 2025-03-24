@@ -129,3 +129,7 @@ C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.JSInterop.dll
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\BlazorBootstrap.dll
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Example.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\SignIn.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\SignOutButton.razor.rz.scp.css
