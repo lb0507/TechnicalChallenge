@@ -29,7 +29,30 @@ namespace DataLibrary
             }
 
         }
+        public async Task<List<DeletedNotesModel>> LoadDeletedNotes<DeletedNotesModel, U>(string sql, U parameters, string connectionString)
+        {
+            //find the user in the database with the matching email, then check if the password matches
+            using (IDbConnection connection = new MySqlConnection(connectionString))
+            {
+                var result = await connection.QueryAsync<DeletedNotesModel>(sql, parameters);
+
+
+                return result.ToList();
+            }
+
+        }
         public async Task SaveNote<T>(string sql, T parameters, string connectionString)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                await connection.OpenAsync(); // Ensure the connection is open
+                await connection.ExecuteAsync(sql, parameters);
+
+
+            }
+        }
+
+        public async Task ExecuteSql<T>(string sql, T parameters, string connectionString)
         {
             using (var connection = new MySqlConnection(connectionString))
             {

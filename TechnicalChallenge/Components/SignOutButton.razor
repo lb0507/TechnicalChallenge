@@ -5,17 +5,12 @@
 @inject IConfiguration _config
 @inject NavigationManager nav
 
-<div>
-    <button class="dashboard" @onclick="GoToHome">Dashboard</button>
+<div container>
 
-
-</div>
-<div class="body">
-    Signed in as: @displayName <button class="btn btn-link" @onclick="SignOut">Sign Out</button>
+    Signed in as: @displayName <button class="btn btn-link" @onclick="SignOut">Sign Out</button> <button class="dashboard" @onclick="GoToHome">Dashboard</button>
     
-    
+ 
 </div>
-
 
 
 

@@ -1,19 +1,29 @@
 ﻿
-.header {
-    padding: 60px;
-    text-align: center;
-    background: #0000ff;
-    color: white;
-    font-size: 30px;
+.container {
+    display: inline-grid;
+    background-color: rgb(158, 179, 194);
    
+    height: 93.2%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    overflow-x: hidden;
 }
 
+.header {
+    text-align: center;
+    background: rgb(8, 103, 136);
+    color: white;
+    font-size: 30px;
 
+
+}
 
 .email-field {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 100px;
@@ -24,16 +34,20 @@
 .password-field {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 50px;
     margin-left: 460px;
 }
 
+.checkbox {
+    margin-left: 460px;
+}
+
 .btn {
-    background-color: #0000ff;
-    color: white;
+    background-color: rgb(212, 81, 19); /*rgb(212, 81, 19)(249, 160, 63)*/
+    color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -56,4 +70,8 @@
 
 .btn-clear {
     margin-left: 50px;
+}
+
+body {
+    background-color: rgb(249, 160, 63);
 }

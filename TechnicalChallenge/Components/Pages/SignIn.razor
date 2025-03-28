@@ -19,6 +19,7 @@
 @using Microsoft.Extensions.Configuration
 
 
+
 <!-- Injections -->
 @inject IUserData _data
 @inject IConfiguration _config
@@ -26,35 +27,39 @@
 
 <!-- Link to the page -->
 <PageTitle>Sign In</PageTitle>
+<div class="container">
+    <div class="header">
+        <h1>Sign In</h1>
 
-<div class="header">
-    <h1>Sign In</h1>
+    </div>
+
+    <div class="body">
+
+        <div> <input type="text" @bind-value="Usr.email" placeholder="Email" class="email-field" /> </div>
+
+        @if (showPassword)
+        {
+
+            <div> <input type="text" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
+
+
+        }
+        else
+        {
+            <div> <input type="password" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
+        }
+
+
+        <div class="checkbox"> <input type="checkbox" id="show-password" @onclick="ToggleIsHidden">
+            <label for="show-password"> Show </label>
+        </div>
+
+        <div> <input type="submit" value="Sign In" @onclick="LoggingIn" class="btn btn-login" /> <button class="btn btn-clear" @onclick="ClearForm">Clear Form</button></div>
+
+
+    </div>
+
 </div>
-
-<div class="body">
-    <div> <input type="text" @bind-value="Usr.email" placeholder="Email" class="email-field" /> </div>
-
-    @if (showPassword)
-    {
-       
-        <div> <input type="text" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
-
-
-    }
-    else
-    {
-        <div> <input type="password" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
-    }
-
-    <input type="checkbox" id="show-password" @onclick="ToggleIsHidden">
-    <label for="show-password"> Show </label>
-
-    <div> <input type="submit" value="Sign In" @onclick="LoggingIn" class="btn btn-login" /> <button class="btn btn-clear" @onclick="ClearForm">Clear Form</button></div>
-
-
-</div>
-
-
 
 
 
@@ -65,22 +70,6 @@
 
 
 
-    /*/  NOTE: EDIT THIS LATER TO IMPLEMENT EDITFORM AND EDITCONTEXT
-    @if (users == null)
-    {
-                <p><em>Loading...</em></p>
-            }
-            else
-            {
-                @foreach (var u in users)
-    {
-                <p>
-                    @u.FirstName @u.LastName @u.email @u.userpassword
-                </p>
-                }
-
-    }
-            */
     private bool showPassword = false;
     List<UserModel> users = new();
     private UserModel Usr = new UserModel(); 
@@ -88,18 +77,19 @@
     //<button class="btn btn-warning" @onclick="ClearForm">Clear Form</button>
     private async Task LoggingIn() 
     {
-    try
-    {
+        try
+        {
 
-        string sql = "select * from users where email = @email";
-
-        UserModel credentials = await _data.LogIn<UserModel, dynamic>(sql, new { email = Usr.email }, Usr.userpassword, _config.GetConnectionString("default"));
+            string sql = "select * from users where email = @email";
+            string hashedPassword = Hashing.Hash(Usr.userpassword);
+     
+            bool successful = await _data.LogIn<bool, dynamic>(sql, new {email = Usr.email}, hashedPassword, _config.GetConnectionString("default"));
         //var connectionString = _config.GetConnectionString("default");
         //Console.WriteLine($"insert Connection String: {connectionString}");
         //Console.WriteLine(credentials);
         //errorUnable to cast object of type 'System.Collections.Generic.List`1[DataLibrary.Models.UserModel]' to type 'DataLibrary.Models.UserModel'.
         //this is returning System.Collections.Generic.List`1[TechnicalChallenge.Models.UserModel]
-        if (credentials!= null)//Login successful if the query pulled any users from the database
+        if (successful)//Login successful if true was returned
         {
 
             Console.WriteLine("Login successful!");

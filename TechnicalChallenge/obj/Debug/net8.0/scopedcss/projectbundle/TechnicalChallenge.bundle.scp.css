@@ -1,8 +1,33 @@
+/* _content/TechnicalChallenge/Components/DashboardButton.razor.rz.scp.css */
+
+.dashboard[b-7yfv747zac] {
+    margin-right:70%;
+    background-color: whitesmoke;
+    border-color: rgb(25, 101, 214);
+    color: rgb(25, 101, 214);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 100px;
+    font-size: 15px;
+    transition: background-color 0.7s, color 0.7s;
+    
+}
+
+.dashboard:hover[b-7yfv747zac] {
+    background-color: rgb(25, 101, 214);
+    color: white;
+}
+
+.dashboard:active[b-7yfv747zac] {
+    opacity: 0.7;
+}
 /* _content/TechnicalChallenge/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-joyh1zgqeh] {
+    display: inline-grid;
     position: relative;
     display: flex;
     flex-direction: column;
+   
 }
 
 main[b-joyh1zgqeh] {
@@ -14,18 +39,19 @@ main[b-joyh1zgqeh] {
 }
 
 .top-row[b-joyh1zgqeh] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
+    background-color: rgb(158, 179, 194);
+    
     height: 3.5rem;
     display: flex;
     align-items: center;
 }
 
+ 
     .top-row[b-joyh1zgqeh]  a, .top-row[b-joyh1zgqeh]  .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
+        row-gap: 50px;
     }
 
     .top-row[b-joyh1zgqeh]  a:hover, .top-row[b-joyh1zgqeh]  .btn-link:hover {
@@ -201,6 +227,9 @@ main[b-joyh1zgqeh] {
         overflow-y: auto;
     }
 }
+/* _content/TechnicalChallenge/Components/Pages/Deleted.razor.rz.scp.css */
+body[b-yup2vx7b38] {
+}
 /* _content/TechnicalChallenge/Components/Pages/Example.razor.rz.scp.css */
 h1[b-5h4vjmmbof] {
     color: brown;
@@ -208,90 +237,108 @@ h1[b-5h4vjmmbof] {
 }
 /* _content/TechnicalChallenge/Components/Pages/Home.razor.rz.scp.css */
 
+
+.container[b-0i4holn1fo] {
+    display: inline-grid;
+    background-color: rgb(158, 179, 194);
+    
+}
+
+
 .split[b-0i4holn1fo] {
-    height: 91.5%;
+    height: 93.2%;
     width: 50%;
     position: fixed;
     z-index: 1;
     bottom: 0;
     overflow-x: hidden;
-    padding-top: 20px;
+    
 }
 
 .left[b-0i4holn1fo] {
     left: 0;
-    background-color: rgb(270, 220, 140);
+    background-color: rgb(249, 160, 63);
+    box-sizing: border-box;
 }
 
 .right[b-0i4holn1fo] {
     right: 0;
-    background-color: white;
+    background-color: whitesmoke;
+    box-sizing: border-box;
 }
 
 h1[b-0i4holn1fo] {
     padding: 40px 30px;
     text-align: center;
-    background-color: rgb(295, 245, 165);
-    border: 5px solid blue;
-    color: rgb(25, 101, 214);
+    background-color: rgb(212, 81, 19);
+    color: whitesmoke;
     font-family: monospace, "Lucida Console", "Courier New";
     font-size: 35px;
     font-weight: bold;
     border-radius: 30px;
     display: inline-block;
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 p[b-0i4holn1fo] {
     font-size: 28px;
     font-family: monospace, "Lucida Console", "Courier New";
-    color: rgb(25, 101, 214);
+    color: whitesmoke;
     margin-top: 100px;
     margin-left: 10%;
     width: 75%;
 }
 
 
-.btn:hover[b-0i4holn1fo] {
+
+
+.add[b-0i4holn1fo] {
+    color: whitesmoke;
+    font-size: 26px;
+    font-family: monospace, "Lucida Console", "Courier New";
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    /* set background color to light blue*/
+    background-color: rgb(7, 160, 195);
+    margin-top: 0%;
+    display: inline-block;
+    
+    box-sizing: border-box;
+    transition: opacity 0.5s;
+    height: 390px;
+}
+
+.add:hover[b-0i4holn1fo] {
     opacity: 0.6;
 }
 
-.btn:active[b-0i4holn1fo] {
+.add:active[b-0i4holn1fo] {
     color: black;
 }
 
-.add[b-0i4holn1fo] {
-    color: white;
+.view[b-0i4holn1fo] {
+    color: whitesmoke;
     font-size: 26px;
     font-family: monospace, "Lucida Console", "Courier New";
     border: none;
     border-radius: 0px;
-    cursor: pointer;
-    /* set background color to light blue*/
-    background-color: rgb(85, 161, 250);
-    margin-left: 0%;
-    transition: opacity 0.5s;
-    height: 300px;
-    margin-top: -30px;
+    height: 379px;
     width: 100%;
-    border: none;
+    cursor: pointer;
+    background-color: rgb(8, 103, 136);
+    transition: opacity 0.5s;
+    
 }
 
-.view[b-0i4holn1fo] {
-    color: white;
-    font-size: 26px;
-    font-family: monospace, "Lucida Console", "Courier New";
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    background-color: rgb(0, 200, 150);
-    margin-left: 0%;
-    transition: opacity 0.5s;
-    height: 300px;
-    margin-bottom: 0px;
-    border: none;
-    width: 100%;
+.view:hover[b-0i4holn1fo] {
+    opacity: 0.6;
+}
+
+.view:active[b-0i4holn1fo] {
+    color: black;
 }
 
 main-layout[b-0i4holn1fo] {
@@ -301,21 +348,31 @@ main-layout[b-0i4holn1fo] {
 }
 /* _content/TechnicalChallenge/Components/Pages/SignIn.razor.rz.scp.css */
 
-.header[b-62wugeadc5] {
-    padding: 60px;
-    text-align: center;
-    background: #0000ff;
-    color: white;
-    font-size: 30px;
+.container[b-62wugeadc5] {
+    display: inline-grid;
+    background-color: rgb(158, 179, 194);
    
+    height: 93.2%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    overflow-x: hidden;
 }
 
+.header[b-62wugeadc5] {
+    text-align: center;
+    background: rgb(8, 103, 136);
+    color: white;
+    font-size: 30px;
 
+
+}
 
 .email-field[b-62wugeadc5] {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 100px;
@@ -326,16 +383,20 @@ main-layout[b-0i4holn1fo] {
 .password-field[b-62wugeadc5] {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 50px;
     margin-left: 460px;
 }
 
+.checkbox[b-62wugeadc5] {
+    margin-left: 460px;
+}
+
 .btn[b-62wugeadc5] {
-    background-color: #0000ff;
-    color: white;
+    background-color: rgb(212, 81, 19); /*rgb(212, 81, 19)(249, 160, 63)*/
+    color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -359,24 +420,47 @@ main-layout[b-0i4holn1fo] {
 .btn-clear[b-62wugeadc5] {
     margin-left: 50px;
 }
+
+body[b-62wugeadc5] {
+    background-color: rgb(249, 160, 63);
+}
 /* _content/TechnicalChallenge/Components/Pages/View.razor.rz.scp.css */
 
+.container[b-f6m5j3twh4] {
+    display: inline-grid;
+    background-color: rgb(7, 160, 195);
+    height: 100%;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-sizing: border-box;
+}
+
+
+.grid-content[b-f6m5j3twh4] {
+    background-color: rgb(250, 200, 110);
+}
+.rowA[b-f6m5j3twh4] {
+   
+}
 h3[b-f6m5j3twh4] {
+    display: inline-grid;
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    color: darkred;
+    color: whitesmoke;
 }
 /* _content/TechnicalChallenge/Components/SignOutButton.razor.rz.scp.css */
-body[b-57zp86n77n] {
-    margin-top: 5px;
-    margin-right: 10px;
+.container[b-57zp86n77n] {
+    margin-top: 0%;
+    margin-left: 90%;
     color: darkblue
 }
 
+
 .dashboard[b-57zp86n77n] {
-    margin-right: 850px;
-    background-color: white;
+    margin-right: 70%;
+    background-color: whitesmoke;
     border-color: rgb(25, 101, 214);
     color: rgb(25, 101, 214);
     cursor: pointer;
@@ -386,11 +470,12 @@ body[b-57zp86n77n] {
     transition: background-color 0.7s, color 0.7s;
 }
 
-.dashboard:hover[b-57zp86n77n] {
-    background-color: rgb(25, 101, 214);
-    color: white;
-}
+    .dashboard:hover[b-57zp86n77n] {
+        background-color: rgb(25, 101, 214);
+        color: white;
+    }
 
-.dashboard:active[b-57zp86n77n] {
-    opacity: 0.7;
-}
+    .dashboard:active[b-57zp86n77n] {
+        opacity: 0.7;
+    }
+

@@ -1,7 +1,25 @@
 
+.container[b-f6m5j3twh4] {
+    display: inline-grid;
+    background-color: rgb(7, 160, 195);
+    height: 100%;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-sizing: border-box;
+}
+
+
+.grid-content[b-f6m5j3twh4] {
+    background-color: rgb(250, 200, 110);
+}
+.rowA[b-f6m5j3twh4] {
+   
+}
 h3[b-f6m5j3twh4] {
+    display: inline-grid;
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    color: darkred;
+    color: whitesmoke;
 }

@@ -1,19 +1,29 @@
 
-.header[b-62wugeadc5] {
-    padding: 60px;
-    text-align: center;
-    background: #0000ff;
-    color: white;
-    font-size: 30px;
+.container[b-62wugeadc5] {
+    display: inline-grid;
+    background-color: rgb(158, 179, 194);
    
+    height: 93.2%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    overflow-x: hidden;
 }
 
+.header[b-62wugeadc5] {
+    text-align: center;
+    background: rgb(8, 103, 136);
+    color: white;
+    font-size: 30px;
 
+
+}
 
 .email-field[b-62wugeadc5] {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 100px;
@@ -24,16 +34,20 @@
 .password-field[b-62wugeadc5] {
     border-radius: 5px;
     border: 0.5px solid lightgray;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     font-size: 14px;
     width: 30%;
     margin-top: 50px;
     margin-left: 460px;
 }
 
+.checkbox[b-62wugeadc5] {
+    margin-left: 460px;
+}
+
 .btn[b-62wugeadc5] {
-    background-color: #0000ff;
-    color: white;
+    background-color: rgb(212, 81, 19); /*rgb(212, 81, 19)(249, 160, 63)*/
+    color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -56,4 +70,8 @@
 
 .btn-clear[b-62wugeadc5] {
     margin-left: 50px;
+}
+
+body[b-62wugeadc5] {
+    background-color: rgb(249, 160, 63);
 }

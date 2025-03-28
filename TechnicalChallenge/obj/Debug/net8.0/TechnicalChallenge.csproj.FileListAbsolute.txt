@@ -133,3 +133,5 @@ C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\SignIn.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\SignOutButton.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\DashboardButton.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Deleted.razor.rz.scp.css

@@ -25,7 +25,7 @@ namespace DataLibrary
             }
         }
 
-        public async Task<UserModel> LogIn<T, U>(string sql, U parameters, string password, string connectionString)
+        public async Task<bool> LogIn<T, U>(string sql, U parameters, string password, string connectionString)
         {
             //find the user in the database with the matching email, then check if the password matches
             using (IDbConnection connection = new MySqlConnection(connectionString))
@@ -35,9 +35,15 @@ namespace DataLibrary
                 {
                     //password matches, return user
                     _model = result;
+                    return true;
+                }
+                else
+                {
+                    //password doesn't match
+                    return false;
                 }
                 
-                return _model;
+                
             }
 
         }

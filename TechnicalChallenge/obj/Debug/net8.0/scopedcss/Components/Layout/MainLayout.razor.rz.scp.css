@@ -1,7 +1,9 @@
 .page[b-joyh1zgqeh] {
+    display: inline-grid;
     position: relative;
     display: flex;
     flex-direction: column;
+   
 }
 
 main[b-joyh1zgqeh] {
@@ -13,18 +15,19 @@ main[b-joyh1zgqeh] {
 }
 
 .top-row[b-joyh1zgqeh] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
+    background-color: rgb(158, 179, 194);
+    
     height: 3.5rem;
     display: flex;
     align-items: center;
 }
 
+ 
     .top-row[b-joyh1zgqeh]  a, .top-row[b-joyh1zgqeh]  .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
+        row-gap: 50px;
     }
 
     .top-row[b-joyh1zgqeh]  a:hover, .top-row[b-joyh1zgqeh]  .btn-link:hover {

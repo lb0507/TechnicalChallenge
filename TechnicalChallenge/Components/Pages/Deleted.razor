@@ -1,4 +1,4 @@
-﻿@page "/view"
+﻿@page "/deletedrecords"
 @rendermode InteractiveServer
 @using DataLibrary
 @using DataLibrary.Models
@@ -19,62 +19,64 @@
 <Modal IsServiceModal="true" />
 <div class="container">
     <h3>Release Notes Management Tool</h3>
-    <p>Release Note Records:</p>
+    <p>Deleted Release Note Records:</p>
     <p>@numNotes Record(s) Found</p>
 </div>
 <div class="grid-content">
     <!-- Build the table for displaying release note data as a grid-->
     <Grid @ref="grid"
-    TItem="ReleaseNotesModel"
-    AllowRowClick="true"
-    Class="table table-hover table-bordered table-striped"
-    Style="--bb-table-selected-row-color: whitesmoke;--bb-table-selected-row-background-color: rgb(212, 81, 19);--bb-table-selected-row-hover-color: whitesmoke;--bb-table-selected-row-hover-background-color: rgb(212, 81, 19);"
-    DataProvider="ReleaseNotesDataProvider"
-    AllowFiltering="true"
-    AllowPaging="true"
-    PageSize="5"
-    AllowSorting="true"
-    AllowSelection="true"
-    @bind-SelectedItems="@selectedNote"
-    AutoHidePaging="true"
-
-
-
-    OnRowDoubleClick="OnRowDoubleClick"
-    Responsive="true"
-    Unit="Unit.Px">
+          TItem="DeletedNotesModel"
+          AllowRowClick="true"
+          Class="table table-hover table-bordered table-striped"
+          Style="--bb-table-selected-row-color: whitesmoke;--bb-table-selected-row-background-color: rgb(212, 81, 19);--bb-table-selected-row-hover-color: whitesmoke;--bb-table-selected-row-hover-background-color: rgb(212, 81, 19);"
+          DataProvider="DeletedNotesDataProvider"
+          AllowFiltering="true"
+          AllowPaging="true"
+          PageSize="5"
+          AllowSorting="true"
+          AllowSelection="true"
+          @bind-SelectedItems="@selectedNote"
+          AutoHidePaging="true"
+          OnRowDoubleClick="OnRowDoubleClick"
+          Responsive="true"
+          Unit="Unit.Px">
 
         <GridColumns>
-            <div class="rowA"> 
-                <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID" SortKeySelector="item => item.Notes_GUID">
+            <div class="rowA">
+                <GridColumn TItem="DeletedNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID" SortKeySelector="item => item.Notes_GUID">
                     @context.Notes_GUID
                 </GridColumn>
             </div>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name" SortKeySelector="item => item.Application_Name">
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Application Name" PropertyName="Application_Name" SortKeySelector="item => item.Application_Name">
                 @context.Application_Name
             </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content" SortKeySelector="item => item.Note_Content">
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Release Note" PropertyName="Note_Content" SortKeySelector="item => item.Note_Content">
                 @context.Note_Content
             </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by" SortKeySelector="item => item.Created_by">
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Created By" PropertyName="Created_by" SortKeySelector="item => item.Created_by">
                 @context.Created_by
             </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date" SortKeySelector="item => item.Created_date">
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Created Date" PropertyName="Created_date" SortKeySelector="item => item.Created_date">
                 @context.Created_date.ToString("dd MMM yyyy")
+            </GridColumn>
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Reason for Deletion" PropertyName="Deletion_reason" SortKeySelector="item => item.Deletion_reason">
+                @context.Deletion_reason
+            </GridColumn>
+            <GridColumn TItem="DeletedNotesModel" HeaderText="Deleted By" PropertyName="Deleted_by" SortKeySelector="item => item.Deleted_by">
+                @context.Deleted_by
             </GridColumn>
         </GridColumns>
 
     </Grid>
 </div>
 <p>
-    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Add Another Release Note </Button>
-    <Button Type="ButtonType.Link" Color="ButtonColor.Danger" To="/deletedrecords"> View Deleted Records </Button>
+    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/view"> Back to View Release Notes </Button>
     <Button Color="ButtonColor.Secondary" @onclick=Refresh> Refresh </Button>
 
 
 </p>
 
-<!--Template for the note deleting modal-->
+<!--Template for the note recovering modal-->
 <Modal @ref="viewModal" title="Release Note" IsVerticallyCentered="true" IsScrollable="true" Size="ModalSize.Large">
     <BodyTemplate>
 
@@ -89,33 +91,28 @@
             <br />
             @created_date
         </p>
-        <div class="form-group row mb-3">
-            <label class="text-input-label">Reason for deleted record: <span class="text-danger">*</span></label>
-            <div class="col-md-10">
-                <TextAreaInput @bind-Value="@reasonForDeletion" Rows="3" Placeholder="Enter Reason for Deletion:" />
-
-            </div>
-        </div>
+      
     </BodyTemplate>
     <FooterTemplate>
         <Button Color="ButtonColor.Secondary" @onclick="HideViewModal">Close</Button>
-        <Button Color="ButtonColor.Danger" @onclick="DeleteNote">Delete Record</Button>
+        <Button Color="ButtonColor.Primary" @onclick="RecoverNote">Recover Record</Button> 
     </FooterTemplate>
 </Modal>
+
 
 
 @code {
     int counter = 0;
     bool selected = false;
     [Inject] ModalService ModalService { get; set; } = default!;
-    private Modal viewModal = default!; 
+    private Modal viewModal = default!;
     private Modal deleteModal = default!;
     //declare a list to store the release notes data
-    List<ReleaseNotesModel> notes = new();
+    List<DeletedNotesModel> notes = new();
     //declare the user
     private UserModel currentUser;
-    private Grid<ReleaseNotesModel> grid;
-    private HashSet<ReleaseNotesModel> selectedNote = new();
+    private Grid<DeletedNotesModel> grid;
+    private HashSet<DeletedNotesModel> selectedNote = new();
     int numNotes = 0;
     //private String message ="";
     private String notes_guid = "";
@@ -126,6 +123,7 @@
     private String reasonForDeletion = "";
     private String fullName = "";
     private DateTime note_date;
+
     protected async override Task OnInitializedAsync()
     {
         //Check if user is signed in
@@ -139,9 +137,9 @@
         //fetch release notes data from the database for the grid and store it in the notes list
         try
         {
-            string sql = "select * from ReleaseNotes"; 
+            string sql = "select * from DeletedNotes";
 
-            notes = await _notesData.LoadReleaseNotes<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+            notes = await _notesData.LoadDeletedNotes<DeletedNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
             numNotes = notes.Count;
             //var connectionString = _config.GetConnectionString("default");
             //Console.WriteLine($"Connection String: {connectionString}");
@@ -153,12 +151,11 @@
 
     }
     //Data provider for the grid, use the data from the notes list to populate the grid
-    private async Task<GridDataProviderResult<ReleaseNotesModel>> ReleaseNotesDataProvider(GridDataProviderRequest<ReleaseNotesModel> request)
+    private async Task<GridDataProviderResult<DeletedNotesModel>> DeletedNotesDataProvider(GridDataProviderRequest<DeletedNotesModel> request)
     {
         return await Task.FromResult(request.ApplyTo(notes));
     }
-
-    private async Task OnRowDoubleClick(GridRowEventArgs<ReleaseNotesModel> args)
+    private async Task OnRowDoubleClick(GridRowEventArgs<DeletedNotesModel> args)
     {
         Console.WriteLine($"Item: {args.Item}");
         Console.WriteLine($"Note_Content: {args.Item?.Note_Content}");
@@ -176,54 +173,18 @@
     {
         await viewModal.HideAsync();
     }
-
-
-    private async Task showDeleteModal(GridRowEventArgs<ReleaseNotesModel> args)
-    {
-
-        //await ModalService.ShowAsync(new ModalOption { Type = ModalType.Primary, Title = "Release Note", Message = $"{args.Item?.Note_Content}", Scrollable=true });
-        /*Notes_GUID = $"Note GUID: {args.Item?.Notes_GUID}";
-        Application_Name = $"Application_Name: {args.Item?.Application_Name}";
-        Note_Content = $"Note Content: {args.Item?.Note_Content}";
-        Created_by = $"Created By: {args.Item?.Created_by}";
-        Created_date = $"Created Date: {args.Item?.Created_date}";
-        */
-                                await viewModal.ShowAsync(); // Show modal
-    }
-    private async Task HideDeleteModal()
-    {
-        await deleteModal.HideAsync();
-    }
-    private Task OnSelectedItemsChanged(HashSet<ReleaseNotesModel> notes)
-    {
-        selectedNote = notes is not null && notes.Any() ? notes : new();
-        selected = true;
-        return Task.CompletedTask;
-    }
-    public void Checking()
-    {
-
-        if (selectedNote != null)
-        {
-            counter++;
-            Console.WriteLine(selectedNote);
-        }
-    }
-
-    private async Task DeleteNote()
+    private async Task RecoverNote()
     {
         try //maybe get rid of this, we have too many try-catches
         {
 
-            try //first insert the ReleaseNote into the DeletedNotes table
+            try //first insert the DeletedNote into the ReleaseNotes table
             {
-                string insertSql = "insert into DeletedNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date, Deletion_reason, Deleted_by) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @note_date, @reasonForDeletion, @fullName);";
+                string insertSql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @note_date);";
 
                 //close the modal
                 await HideViewModal();
-                note_date = DateTime.Parse(created_date);
-                Console.WriteLine("date created: " + created_date);
-                Console.WriteLine("date sent: " + note_date);
+
                 //structure the task call to insert the new note into the database, I made it vertical for readability
                 await _notesData.ExecuteSql(insertSql, new
                 {
@@ -231,13 +192,11 @@
                     application_name,
                     note_content,
                     created_by,
-                    note_date,
-                    reasonForDeletion,
-                    fullName = currentUser.FirstName + " " + currentUser.LastName
+                    note_date = DateTime.Parse(created_date),
+                
                 }, _config.GetConnectionString("default"));
-
-                Console.WriteLine("date created: " + created_date);
-                Console.WriteLine("date sent: " + note_date);
+               
+                
 
             }
             catch (Exception e)
@@ -250,7 +209,7 @@
             try //then delete
             {
                 //sql query to delete the selected note from the ReleaseNotes table in the database
-                string deleteSql = "delete from ReleaseNotes where Notes_GUID = @notes_guid;";
+                string deleteSql = "delete from DeletedNotes where Notes_GUID = @notes_guid;";
                 await _notesData.ExecuteSql(deleteSql, new
                 {
                     notes_guid
@@ -263,10 +222,8 @@
             }
 
             //refresh the page to reflect changes
-            Console.WriteLine("Refreshing...");
-            nav.NavigateTo("/view", forceLoad: true);
+            nav.NavigateTo("/deletedrecords", forceLoad: true);
 
-           
             // is the line below problematic?
             await OnInitializedAsync();
         }
@@ -280,10 +237,8 @@
     public void Refresh()
     {
 
-        nav.NavigateTo("/view", forceLoad: true);
+        nav.NavigateTo("/deletedrecords", forceLoad: true);
     }
 
+
 }
-    
-
-
