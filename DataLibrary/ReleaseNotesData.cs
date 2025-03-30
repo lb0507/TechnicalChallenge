@@ -13,13 +13,12 @@ namespace DataLibrary
 {
     public class ReleaseNotesData : IReleaseNotesData
     {
-        private static ReleaseNotesModel _model; //maybe if I change this to static my life will be easier
-                                                 //Big suprise, I changed it to static and my quality of life doubled immediately
-
+        //declare a model to store the data of a release note
+        private static ReleaseNotesModel _model; 
 
         public async Task<List<ReleaseNotesModel>> LoadReleaseNotes<ReleaseNotesModel, U>(string sql, U parameters, string connectionString)
         {
-            //find the user in the database with the matching email, then check if the password matches
+            //a method to load the release notes from the database and return it as a list
             using (IDbConnection connection = new MySqlConnection(connectionString))
             {
                 var result = await connection.QueryAsync<ReleaseNotesModel>(sql, parameters);
@@ -31,7 +30,7 @@ namespace DataLibrary
         }
         public async Task<List<DeletedNotesModel>> LoadDeletedNotes<DeletedNotesModel, U>(string sql, U parameters, string connectionString)
         {
-            //find the user in the database with the matching email, then check if the password matches
+            //a method to load the deleted release notes from the database and return it as a list
             using (IDbConnection connection = new MySqlConnection(connectionString))
             {
                 var result = await connection.QueryAsync<DeletedNotesModel>(sql, parameters);
@@ -42,7 +41,7 @@ namespace DataLibrary
 
         }
         public async Task SaveNote<T>(string sql, T parameters, string connectionString)
-        {
+        {// a method to save release notes and deleted release notes to the database
             using (var connection = new MySqlConnection(connectionString))
             {
                 await connection.OpenAsync(); // Ensure the connection is open
@@ -53,7 +52,7 @@ namespace DataLibrary
         }
 
         public async Task ExecuteSql<T>(string sql, T parameters, string connectionString)
-        {
+        {// a generic method to execute a sql command, usually used for delete
             using (var connection = new MySqlConnection(connectionString))
             {
                 await connection.OpenAsync(); // Ensure the connection is open
@@ -64,44 +63,25 @@ namespace DataLibrary
         }
         public void SetNoteByParam(string Notes_GUID, string Application_Name, string Note_Content, string Created_by, DateTime Created_date) 
         {
-            //set the last added user to the model
-            //this is used for the Confirmation Page
-            //I received a null reference exception when I tried to set the model directly
-            //so I create a temporary local ReleaseNotesModel object the set the values
-            //update: that did not resolve the issue, it is still null in Confirmation.razor
-            //This was not an issue previous to imlementing EditContext for the validation check
-            //The issue is likely with how _model is storing data
-
-            //Maybe it is not taking the value from local variable temp but rather a reference and when 
-            //temp is destroyed it loses the data
-            //maybe initializing _model to a value that can be overwritten by the parameters?
-            /*There's gotta be a better way of doing this
-             * ReleaseNotesModel temp = new ReleaseNotesModel();
-            temp.Notes_GUID = Notes_GUID;
-            temp.Application_Name = Application_Name;
-            temp.Note_Content = Note_Content;
-            temp.Created_by = Created_by;
-            temp.Created_date = Created_date;
-            _model = temp;
-             Ok if this one doesn't work I'm changing _model to static
-            */
+            //set the last added release note to the model
+            //this is used for displaying the release not info on the Confirmation Page
+            //the model will be set back to null after the info is displayed
+            //because of editContext, setting the model directly causes an error, so here we set the properties of the model individually
             _model = new ReleaseNotesModel();
             _model.Notes_GUID = Notes_GUID;
             _model.Application_Name = Application_Name;
             _model.Note_Content = Note_Content;
             _model.Created_by = Created_by;
             _model.Created_date = Created_date;
-            Console.WriteLine(_model);
-            Console.WriteLine(_model.Note_Content);
 
         }
 
         public void SetNote(ReleaseNotesModel releaseNotesModel)
-        {
+        {//a method to set the model to a passed in release note model
             _model = releaseNotesModel;
         }
-        public ReleaseNotesModel GetLastAdded() 
-        {
+        public ReleaseNotesModel GetLastAdded()
+        {//the method to get the last added release note for the confirmation page
             try
             {
                 return _model;
@@ -113,8 +93,5 @@ namespace DataLibrary
             }
              
         }
-        //get the release note that was just added so we can display the info in the confirmation page
-        //the method that calls this will set the model back to null 
-        // i.e. SetNote(null)
     }
 }

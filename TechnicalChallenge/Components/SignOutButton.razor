@@ -1,45 +1,50 @@
-﻿@rendermode InteractiveServer
+﻿@*
+
+    The bar across the top of the page with the Home button, Sign out button, and the user's name.
+    Version 3.30.25
+
+*@
+@rendermode InteractiveServer
 @using DataLibrary
 @using DataLibrary.Models
 @inject IUserData _user
 @inject IConfiguration _config
 @inject NavigationManager nav
 
-<div container>
-
-    Signed in as: @displayName <button class="btn btn-link" @onclick="SignOut">Sign Out</button> <button class="dashboard" @onclick="GoToHome">Dashboard</button>
+<div class="container">
+    <!--Home button-->
+    <button class="dashboard" @onclick="GoToHome">Home</button>
+    <!--Display the current user's name and the sign out button-->
+    Signed in as: @displayName <button class="btn btn-link" @onclick="SignOut">Sign Out</button>
     
- 
 </div>
-
-
 
 @code {
     private UserModel currentUser = new();
     private String displayName = "";
     
+    //method to sign out the user and redirect them to the sign-in page
     public void SignOut()
     {
-        Console.WriteLine("Signing out...");
         _user.SignOutUser();
         nav.NavigateTo("/signin");
     }
+
+    //navigate the user to the main (home) page
     public void GoToHome()
     {
-        Console.WriteLine("Navigating to Home Page...");
         nav.NavigateTo("/");
     }
+
     protected override async Task OnInitializedAsync()
     {
-
         try
-        { 
+        {   //get the current user's information 
             currentUser = _user.GetUserSignOnInfo();
             if (currentUser != null)
-            {
+            {   //concatenate the user's first and last name to display
                 displayName = currentUser.FirstName + " " + currentUser.LastName;
             }
-            
         }
         catch (Exception e)
         {

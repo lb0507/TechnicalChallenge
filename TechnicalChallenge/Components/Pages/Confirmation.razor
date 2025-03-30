@@ -1,4 +1,12 @@
-﻿@page "/confirmation"
+﻿@*
+
+    The page to confirm the insertion of a new release note record to the database.
+    Version 3.30.25
+
+*@
+
+<!-- Link to the page -->
+@page "/confirmation"
 @rendermode InteractiveServer
 @using DataLibrary
 @using DataLibrary.Models
@@ -18,59 +26,59 @@
 <h3>Confirmation</h3>
 
 <!--Display the properties of the newly inserted Release Note-->
-<p>You have successsfully saved a new Release Note record.</p>
+<p>You have successfully saved a new release note record.</p>
 <div> 
-    Application Name: @addedNote.Application_Name
+    <strong>Application Name:</strong> @addedNote.Application_Name
     <br />
-    Release Note: @addedNote.Note_Content
+    <strong>Release Note:</strong> @addedNote.Note_Content
     <br />
-    Created By: @addedNote.Created_by
+    <strong>Created By:</strong> @addedNote.Created_by
     <br />
-    Created Date: @addedNote.Created_date.ToString("dd MMMMM yyyy HH:MM")
+    <strong>Created Date:</strong> @addedNote.Created_date.ToString("dd MMMMM yyyy HH:mm")
     <br />
     <br />
-    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToAdd"> Create a New Release Note Record </Button>
-    <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="GoToView"> Show Existing Release Note Records </Button>
+    <!--Button to navigate back to the add page-->
+    <Button Type="ButtonType.Button" Color="ButtonColor.Success" @onclick="GoToAdd"> Create a New Release Note Record </Button>
+    <!--Button to navigate to the view page-->
+    <Button Type="ButtonType.Button" Color="ButtonColor.Secondary" @onclick="GoToView"> Show Existing Release Note Records </Button>
 </div>
 
 @code {
-
-
-
+    //create a new instance of the ReleaseNotesModel for the newly added note
     private ReleaseNotesModel addedNote;
+    //create a new instance of the UserModel for the current user
     private UserModel currentUser;
+
     protected async override Task OnInitializedAsync()
     {
         //check if the user is signed in
         currentUser = _user.GetUserSignOnInfo();
-
+        //if no user is signed in, redirect them to the sign-in page
         if (currentUser == null)
         {
-
             nav.NavigateTo("/signin");
         }
-        //load the Release Notes that was just added
+        //load the release note that was just added
         addedNote = _notesData.GetLastAdded();
-        //if there isn't one, then the user navigated to this page from the URL, redirect them to /add
+        //if there isn't one (null is returned), then the user navigated to this page from the URL, redirect them to /add
         if (addedNote == null)
         {
-            //The ReleaseNotesModel being passed in from ReleaseNotesData is null
-            //This was not an issue previous to imlementing EditContext for the validation check
-            
-            Console.WriteLine("Note is null");
             nav.NavigateTo("/add");
         }
     }
-    //InvalidOperationException: The constraint reference
-    //  'ReleaseNotesModel' could not be resolved to a type. Register the constraint type with 'Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap'.
+
+    //navigate to the add page, force a reload to reflect recent changes
     public void GoToAdd()
     {
+        //reset the note data in ReleaseNotesData to null
         _notesData.SetNote(null);
         nav.NavigateTo("/add", forceLoad: true);
     }
+
+    //navigate to the view page, force a reload to reflect recent changes
     public void GoToView()
     {
-
+        //reset the note data in ReleaseNotesData to null
         _notesData.SetNote(null);
         nav.NavigateTo("/view", forceLoad: true);
     }

@@ -1,0 +1,24 @@
+body[b-re23o9iu96] {
+}
+h3[b-re23o9iu96] {
+    margin-top: 20px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+    color: floralwhite;
+}
+p[b-re23o9iu96] {
+    color: floralwhite;
+    font-size: 20px;
+}
+div[b-re23o9iu96] {
+    background-image: linear-gradient(180deg, rgb(7, 160, 195) 0%, rgb(8, 103, 136) 90%);
+    width: 50%;
+    margin: auto;
+    padding: 5%;
+    border-radius: 50px;
+    margin-top: 10%;
+    display: block;
+    text-align: center;
+    color: floralwhite;
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Model for the DeletedNotes table in the database
+using System;
 using System.Collections.Generic;
 using System.Text;
 

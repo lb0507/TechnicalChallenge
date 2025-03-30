@@ -1,0 +1,52 @@
+body[b-9melgoprkx] {
+    background-color: rgb(8, 103, 136);
+    margin-top: 0px;
+    font-family: "Arial", Sans-serif;
+}
+.top-row[b-9melgoprkx] {
+   
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
+    height: 3.0rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+   
+}
+h3[b-9melgoprkx] {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+    color: floralwhite;
+}
+p[b-9melgoprkx] {
+    margin-left: 20px;
+    color: floralwhite;
+    font-size: 20px;
+}
+.application-selection[b-9melgoprkx] {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.editform[b-9melgoprkx] {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    box-sizing: border-box;
+   
+    color: floralwhite;
+    background-color: rgb(7, 160, 195);
+    border-radius: 50px;
+    padding-left: 10%;
+    padding-right: 80px;
+    padding-bottom: 50px;
+}
+
+.form-group[b-9melgoprkx] {
+    width: 500px;
+    margin: auto;
+   
+
+}

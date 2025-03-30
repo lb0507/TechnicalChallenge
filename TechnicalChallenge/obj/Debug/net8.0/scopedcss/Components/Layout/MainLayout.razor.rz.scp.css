@@ -1,9 +1,9 @@
 .page[b-joyh1zgqeh] {
-    display: inline-grid;
+    
     position: relative;
     display: flex;
     flex-direction: column;
-   
+    background-color: rgb(158, 179, 194);
 }
 
 main[b-joyh1zgqeh] {
@@ -15,8 +15,7 @@ main[b-joyh1zgqeh] {
 }
 
 .top-row[b-joyh1zgqeh] {
-    background-color: rgb(158, 179, 194);
-    
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -25,7 +24,7 @@ main[b-joyh1zgqeh] {
  
     .top-row[b-joyh1zgqeh]  a, .top-row[b-joyh1zgqeh]  .btn-link {
         white-space: nowrap;
-        margin-left: 1.5rem;
+        margin-left: 1.0rem;
         text-decoration: none;
         row-gap: 50px;
     }
@@ -54,12 +53,6 @@ main[b-joyh1zgqeh] {
         flex-direction: row;
     }
 
-    .sidebar[b-joyh1zgqeh] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
 
     .top-row[b-joyh1zgqeh] {
         position: sticky;

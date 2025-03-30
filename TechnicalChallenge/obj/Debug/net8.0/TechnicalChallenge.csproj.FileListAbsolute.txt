@@ -58,7 +58,6 @@ C:\Users\lexie\source\repos\TechnicalChallengeSolution\TechnicalChallenge\bin\De
 C:\Users\lexie\source\repos\TechnicalChallengeSolution\TechnicalChallenge\obj\Debug\net8.0\TechnicalChallenge.csproj.AssemblyReference.cache
 C:\Users\lexie\source\repos\TechnicalChallengeSolution\TechnicalChallenge\obj\Debug\net8.0\Technica.0B41F740.Up2Date
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\appsettings.json
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\TechnicalChallenge.staticwebassets.endpoints.json
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\TechnicalChallenge.staticwebassets.runtime.json
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\TechnicalChallenge.exe
@@ -129,9 +128,10 @@ C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\Microsoft.JSInterop.dll
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\BlazorBootstrap.dll
-C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Example.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\SignIn.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\SignOutButton.razor.rz.scp.css
-C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\DashboardButton.razor.rz.scp.css
 C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Deleted.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\bin\Debug\net8.0\appsettings.json
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Add.razor.rz.scp.css
+C:\Users\lexie\source\repos\TechnicalChallenge\TechnicalChallenge\obj\Debug\net8.0\scopedcss\Components\Pages\Confirmation.razor.rz.scp.css

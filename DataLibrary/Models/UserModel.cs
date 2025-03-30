@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Model for the Users table in the database
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

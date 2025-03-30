@@ -28,28 +28,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcRW1wdHlMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Add.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Confirmation.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb25maXJtYXRpb24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/People.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQZW9wbGUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Routes.razor]
@@ -60,10 +40,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/DashboardButton.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEYXNoYm9hcmRCdXR0b24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-7yfv747zac
-
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-joyh1zgqeh
@@ -72,13 +48,17 @@ build_metadata.AdditionalFiles.CssScope = b-joyh1zgqeh
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-icp0r8oicm
 
+[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Add.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9melgoprkx
+
+[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Confirmation.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb25maXJtYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-re23o9iu96
+
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Deleted.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZWxldGVkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-yup2vx7b38
-
-[C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Example.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFeGFtcGxlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-5h4vjmmbof
 
 [C:/Users/lexie/source/repos/TechnicalChallenge/TechnicalChallenge/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y

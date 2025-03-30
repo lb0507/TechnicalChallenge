@@ -1,0 +1,52 @@
+﻿body {
+    background-color: rgb(8, 103, 136);
+    margin-top: 0px;
+    font-family: "Arial", Sans-serif;
+}
+.top-row {
+   
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
+    height: 3.0rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+   
+}
+h3 {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+    color: floralwhite;
+}
+p {
+    margin-left: 20px;
+    color: floralwhite;
+    font-size: 20px;
+}
+.application-selection {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.editform {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    box-sizing: border-box;
+   
+    color: floralwhite;
+    background-color: rgb(7, 160, 195);
+    border-radius: 50px;
+    padding-left: 10%;
+    padding-right: 80px;
+    padding-bottom: 50px;
+}
+
+.form-group {
+    width: 500px;
+    margin: auto;
+   
+
+}

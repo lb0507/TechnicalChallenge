@@ -1,4 +1,12 @@
-﻿@page "/"
+﻿@*
+
+    The main page.
+    Version 3.30.25
+
+*@
+
+<!-- Link to the page -->
+@page "/"
 @rendermode InteractiveServer
 @using DataLibrary
 @using DataLibrary.Models
@@ -11,53 +19,49 @@
 
 <PageTitle>Home</PageTitle>
 <div class="container">
-
+    <!--divide the page vertically into 2 halves-->
+    <!--the left side has text-->
     <div class="split left">
         <h1> Release Notes Management Tool</h1>
         <div> <p>Please choose an operation to perform using the buttons on the right:</p></div>
     </div>
-
-
-
+    <!--the right side has buttons to navigate to the /add page and the /view page-->
     <div class="split right">
-
-        
-            <div> <button class="add" @onclick="GoToAdd">Create a New Release Note Record</button> </div>
-        
-       
-            <div> <button class="view" @onclick="GoToView">Show Existing Release Note Records</button></div>
-       
-    
+        <!--the right side is split horizontally with a button each taking up an entire half-->
+        <div class="split right top">
+            <!--the button to go to the add page-->
+            <button class="add" @onclick="GoToAdd">Create a New Release Note Record</button>
+        </div>
+        <div class="split right bottom">
+            <!--the button to go to the view page-->
+            <button class="view" @onclick="GoToView">Show Existing Release Note Records</button>
+        </div>
     </div>
-
 </div>
 
-    
-   
-    
-
 @code{
-    List<ReleaseNotesModel> notes = new();
     private UserModel currentUser;
+    //check if the user is signed in by pulling their information and checking if it's null
     protected async override Task OnInitializedAsync()
     {
         currentUser = _user.GetUserSignOnInfo();
-        
+        //if null is returned, then the user is not signed in, so redirect them to the sign-in page
         if (currentUser == null)
-        {
-
+        {  
             nav.NavigateTo("/signin");
         }
-
     }
+
+    //method to navigate to the view page
+    //force a reload of the page as well to ensure the data displayed is up-to-date
     public void GoToView()
     {
-
         nav.NavigateTo("/view", forceLoad: true);
     }
+
+    //method to navigate to the add page
     public void GoToAdd()
     {
-
         nav.NavigateTo("/add");
     }
    

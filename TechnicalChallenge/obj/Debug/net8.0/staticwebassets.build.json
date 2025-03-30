@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YV8QWYtDWZFNvGXYjxFcF3QTvt/Ch5UvnO7NXC/ACM0=",
+  "Hash": "3sCOZUbjjpP/hB7oThjeLE+DCB4GL3Zq2xmSKxvYyeQ=",
   "Source": "TechnicalChallenge",
   "BasePath": "_content/TechnicalChallenge",
   "Mode": "Default",
@@ -262,8 +262,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "olgdl0s4q8",
-      "Integrity": "tHXz5s5wRKOz7LtFHNSW31b22iMSayBhFB60lRHE4ac=",
+      "Fingerprint": "ulk2mxll9a",
+      "Integrity": "LqHCFrw1ks/H5teMVmWwBwZ7J1gV3QnULWd3uY7CP2A=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TechnicalChallenge.styles.css"
@@ -283,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "gav1i8imd9",
-      "Integrity": "qGZtUtRbUgRsxySFZEpJ4DbmXfr6k4acWu6NzoTaa7w=",
+      "Fingerprint": "1rplqdo9cr",
+      "Integrity": "Yxxqwc8qZ/nmMA8YGKr1oxdm/U+K9k+OUDu5y6TuZmo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css"
@@ -1359,6 +1359,51 @@
       ]
     },
     {
+      "Route": "TechnicalChallenge.1rplqdo9cr.bundle.scp.css",
+      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14632"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yxxqwc8qZ/nmMA8YGKr1oxdm/U+K9k+OUDu5y6TuZmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 18:43:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1rplqdo9cr"
+        },
+        {
+          "Name": "label",
+          "Value": "TechnicalChallenge.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yxxqwc8qZ/nmMA8YGKr1oxdm/U+K9k+OUDu5y6TuZmo="
+        }
+      ]
+    },
+    {
       "Route": "TechnicalChallenge.bundle.scp.css",
       "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
       "Selectors": [],
@@ -1369,7 +1414,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11631"
+          "Value": "14632"
         },
         {
           "Name": "Content-Type",
@@ -1377,11 +1422,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"qGZtUtRbUgRsxySFZEpJ4DbmXfr6k4acWu6NzoTaa7w=\""
+          "Value": "\"Yxxqwc8qZ/nmMA8YGKr1oxdm/U+K9k+OUDu5y6TuZmo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:09:49 GMT"
+          "Value": "Sun, 30 Mar 2025 18:43:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1391,101 +1436,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-qGZtUtRbUgRsxySFZEpJ4DbmXfr6k4acWu6NzoTaa7w="
-        }
-      ]
-    },
-    {
-      "Route": "TechnicalChallenge.gav1i8imd9.bundle.scp.css",
-      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TechnicalChallenge.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "11631"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"qGZtUtRbUgRsxySFZEpJ4DbmXfr6k4acWu6NzoTaa7w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:09:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "gav1i8imd9"
-        },
-        {
-          "Name": "label",
-          "Value": "TechnicalChallenge.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-qGZtUtRbUgRsxySFZEpJ4DbmXfr6k4acWu6NzoTaa7w="
-        }
-      ]
-    },
-    {
-      "Route": "TechnicalChallenge.olgdl0s4q8.styles.css",
-      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TechnicalChallenge.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "11845"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"tHXz5s5wRKOz7LtFHNSW31b22iMSayBhFB60lRHE4ac=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:09:49 GMT"
-        },
-        {
-          "Name": "Link",
-          "Value": "<_content/Blazor.Bootstrap/Blazor.Bootstrap.7t9tbfaemk.bundle.scp.css>; rel=\"preload\"; as=\"style\", <_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.25o87uqmvr.bundle.scp.css>; rel=\"preload\"; as=\"style\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "olgdl0s4q8"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-tHXz5s5wRKOz7LtFHNSW31b22iMSayBhFB60lRHE4ac="
-        },
-        {
-          "Name": "label",
-          "Value": "TechnicalChallenge.styles.css"
+          "Value": "sha256-Yxxqwc8qZ/nmMA8YGKr1oxdm/U+K9k+OUDu5y6TuZmo="
         }
       ]
     },
@@ -1504,7 +1455,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11845"
+          "Value": "14846"
         },
         {
           "Name": "Content-Type",
@@ -1512,11 +1463,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tHXz5s5wRKOz7LtFHNSW31b22iMSayBhFB60lRHE4ac=\""
+          "Value": "\"LqHCFrw1ks/H5teMVmWwBwZ7J1gV3QnULWd3uY7CP2A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:09:49 GMT"
+          "Value": "Sun, 30 Mar 2025 18:43:55 GMT"
         },
         {
           "Name": "Link",
@@ -1526,7 +1477,56 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tHXz5s5wRKOz7LtFHNSW31b22iMSayBhFB60lRHE4ac="
+          "Value": "sha256-LqHCFrw1ks/H5teMVmWwBwZ7J1gV3QnULWd3uY7CP2A="
+        }
+      ]
+    },
+    {
+      "Route": "TechnicalChallenge.ulk2mxll9a.styles.css",
+      "AssetFile": "C:\\Users\\lexie\\source\\repos\\TechnicalChallenge\\TechnicalChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TechnicalChallenge.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14846"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LqHCFrw1ks/H5teMVmWwBwZ7J1gV3QnULWd3uY7CP2A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 30 Mar 2025 18:43:55 GMT"
+        },
+        {
+          "Name": "Link",
+          "Value": "<_content/Blazor.Bootstrap/Blazor.Bootstrap.7t9tbfaemk.bundle.scp.css>; rel=\"preload\"; as=\"style\", <_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.25o87uqmvr.bundle.scp.css>; rel=\"preload\"; as=\"style\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ulk2mxll9a"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LqHCFrw1ks/H5teMVmWwBwZ7J1gV3QnULWd3uY7CP2A="
+        },
+        {
+          "Name": "label",
+          "Value": "TechnicalChallenge.styles.css"
         }
       ]
     }

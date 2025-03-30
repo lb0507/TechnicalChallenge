@@ -1,15 +1,13 @@
 ﻿@*
 
     The sign-in page.
-    Version 3.22.25
+    Version 3.30.25
 
 *@
-
 
 <!-- Link to the page -->
 @page "/signin"
 @layout EmptyLayout
-<!--Don't display the current user or sign-out button-->
 
 <!-- allows user to interact -->
 @rendermode InteractiveServer
@@ -18,8 +16,6 @@
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
 
-
-
 <!-- Injections -->
 @inject IUserData _data
 @inject IConfiguration _config
@@ -27,134 +23,96 @@
 
 <!-- Link to the page -->
 <PageTitle>Sign In</PageTitle>
-<div class="container">
-    <div class="header">
+<div class="page">
+    <header>
         <h1>Sign In</h1>
-
+    </header>
+    <div class="content">
+        <!--Email input field-->
+        <input type="text" @bind-value="Usr.email" placeholder="Email" class="email-field" />
+        <p>
+            <!--Password input field, if showPassword is set to false, input characters will show as dots-->
+            @if (showPassword)
+            {
+                <input type="text" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" />
+            }
+            else
+            {
+                <input type="password" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" />
+            }
+            <!--A checkbox; if checked off, the input in the password field is visible-->
+            <div id="chkbx">
+                <input type="checkbox" id="show-password" @onclick="ToggleIsHidden">
+                <label for="show-password"> Show </label>
+            </div>
+        </p>
+        <!--The buttons to sign in and to clear the input from the text fields-->
+        <input type="submit" value="Sign In" @onclick="LoggingIn" class="btn btn-login" /> <button class="btn btn-clear" @onclick="ClearForm">Clear Form</button>
     </div>
-
-    <div class="body">
-
-        <div> <input type="text" @bind-value="Usr.email" placeholder="Email" class="email-field" /> </div>
-
-        @if (showPassword)
-        {
-
-            <div> <input type="text" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
-
-
-        }
-        else
-        {
-            <div> <input type="password" @bind-value="Usr.userpassword" placeholder="Password" class="password-field" /> </div>
-        }
-
-
-        <div class="checkbox"> <input type="checkbox" id="show-password" @onclick="ToggleIsHidden">
-            <label for="show-password"> Show </label>
-        </div>
-
-        <div> <input type="submit" value="Sign In" @onclick="LoggingIn" class="btn btn-login" /> <button class="btn btn-clear" @onclick="ClearForm">Clear Form</button></div>
-
-
-    </div>
-
 </div>
 
-
-
-
-
-
 @code {
-
-
-
     private bool showPassword = false;
-    List<UserModel> users = new();
+    //create a new instance of the UserModel for signing in
     private UserModel Usr = new UserModel(); 
+    //create a new instance of the UserModel for the determining if the user is already signed in
     private UserModel currentUser = new UserModel();
-    //<button class="btn btn-warning" @onclick="ClearForm">Clear Form</button>
+
+    //function to sign the user in
     private async Task LoggingIn() 
     {
         try
-        {
-
+        {   //the sql query to pull a user from the database by their email
             string sql = "select * from users where email = @email";
+            //hash the password typed into the password input field
             string hashedPassword = Hashing.Hash(Usr.userpassword);
-     
+
+            //pass the sql query and hashed password as parameters to the LogIn function from UserData.cs
             bool successful = await _data.LogIn<bool, dynamic>(sql, new {email = Usr.email}, hashedPassword, _config.GetConnectionString("default"));
-        //var connectionString = _config.GetConnectionString("default");
-        //Console.WriteLine($"insert Connection String: {connectionString}");
-        //Console.WriteLine(credentials);
-        //errorUnable to cast object of type 'System.Collections.Generic.List`1[DataLibrary.Models.UserModel]' to type 'DataLibrary.Models.UserModel'.
-        //this is returning System.Collections.Generic.List`1[TechnicalChallenge.Models.UserModel]
-        if (successful)//Login successful if true was returned
-        {
-
-            Console.WriteLine("Login successful!");
-            nav.NavigateTo("/");
+            if (successful)
+            {//Login successful if true was returned, direct the user to the home page
+                nav.NavigateTo("/");
+            }
+            else
+            {//the login was not successful, clear the input fields
+                ClearForm();
+                
+            }
         }
-        else
+        catch (Exception e)
         {
-            Console.WriteLine("Invalid credentials.");
-            //Refresh the text fields
-            ClearForm();
+            Console.WriteLine(e.Message);
         }
 
-        //await OnInitializedAsync();
     }
-    catch (Exception e)
-    {
-        Console.WriteLine(e.Message);
-    }
-
-    }
-
 
     protected override async Task OnInitializedAsync()
     {
 
-    try
-    { //Do we need this LoadData? - probably not
-        currentUser = _data.GetUserSignOnInfo();
-        //See if user is already signed in, if so, redirect to home page
-        if (currentUser != null)
-        {
-
-            nav.NavigateTo("/");
-            //add a pop up or something informing the user that they are already signed in
+        try
+        { //get the info of the user that is currently logged in
+            currentUser = _data.GetUserSignOnInfo();
+            //if null is returned, then the user is not signed in
+            if (currentUser != null)
+            {//if a user is returned, then redirect to home page because they are already signed in
+                //this makes the Sign-in page only accessible if the user is not signed in
+                nav.NavigateTo("/");
+            }
         }
-        /*
-        string sql = "select * from users";
-        users = await _data.LoadData<UserModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
-        var connectionString = _config.GetConnectionString("default");
-        Console.WriteLine($"Connection String: {connectionString}");
-        */
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
-    catch (Exception e)
-    {
-        Console.WriteLine(e.Message);
-    }
-
-
-    }
-        //Clear the input fields
+    //Clear the input fields by replacing the UserModel with a new instance of UserModel
     protected void ClearForm()
     {
-    Usr = new UserModel();
+        Usr = new UserModel();
     }
 
-    void InvalidForm()
-    {
-    Console.WriteLine("Invalid form.");
-    }
-
-    //negate the value, if isHidden is false, set it to true, if it is true, set to false
+    //A method to toggle the visibility of the password input field
     public void ToggleIsHidden()
-        {
-    showPassword = (!showPassword);
-        }
-
-
+    {//negate the value of showPassword; if isHidden is false, set it to true; if it is true, set to false
+        showPassword = (!showPassword);
+    }
 }

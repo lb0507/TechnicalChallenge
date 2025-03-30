@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* 
+ * Hashes a passed in string using SHA256
+ * Used for hashing passwords
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
@@ -7,13 +11,6 @@ namespace DataLibrary
 {
     public class Hashing
     {
-        public static void Main(String[] args)
-        {
-            Console.WriteLine("Enter a string to hash:");
-            string input = Console.ReadLine();
-            Console.WriteLine("SHA256 hash of " + input + " is:");
-            Console.WriteLine(Hash(input));
-        }
         public static String Hash(String password)
         {
            

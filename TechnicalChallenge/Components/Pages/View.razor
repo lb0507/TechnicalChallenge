@@ -1,11 +1,18 @@
-﻿@page "/view"
+﻿@*
+
+    The page to view the release notes in the database (the ReleaseNotes table).
+    Version 3.30.25
+
+*@
+
+<!-- Link to the page -->
+@page "/view"
 @rendermode InteractiveServer
+@layout EmptyLayout
 @using DataLibrary
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
 @using BlazorBootstrap.Components
-
-
 
 <!-- Injections -->
 @inject IUserData _data
@@ -13,72 +20,76 @@
 @inject IConfiguration _config
 @inject NavigationManager nav
 
-
-
 <PageTitle>View Records</PageTitle>
 <Modal IsServiceModal="true" />
-<div class="container">
-    <h3>Release Notes Management Tool</h3>
-    <p>Release Note Records:</p>
-    <p>@numNotes Record(s) Found</p>
-</div>
-<div class="grid-content">
-    <!-- Build the table for displaying release note data as a grid-->
-    <Grid @ref="grid"
-    TItem="ReleaseNotesModel"
-    AllowRowClick="true"
-    Class="table table-hover table-bordered table-striped"
-    Style="--bb-table-selected-row-color: whitesmoke;--bb-table-selected-row-background-color: rgb(212, 81, 19);--bb-table-selected-row-hover-color: whitesmoke;--bb-table-selected-row-hover-background-color: rgb(212, 81, 19);"
-    DataProvider="ReleaseNotesDataProvider"
-    AllowFiltering="true"
-    AllowPaging="true"
-    PageSize="5"
-    AllowSorting="true"
-    AllowSelection="true"
-    @bind-SelectedItems="@selectedNote"
-    AutoHidePaging="true"
+
+<body>
+    <div class="top-row px-4">
+        <!--This page is not using the MainLayout, so we have to add the sign-out/dashboard navigation bar to to the top of the page-->
+        <a><SignOutButton /></a>
+
+    </div>
+    <main>
+        <h3>Release Notes Management Tool</h3>
+        <p>Release Note Records:</p>
+        <p>@numNotes Record(s) Found</p>
+
+        <div class="grid-content">
+            <!-- Build the table for displaying release note data as a grid-->
+            <Grid @ref="grid"
+            TItem="ReleaseNotesModel"
+            AllowRowClick="true"
+            Class="table table-hover table-bordered"
+            Style="background-color: rgb(212, 81, 19); color:floralwhite;"
+            DataProvider="ReleaseNotesDataProvider"
+            AllowFiltering="true"
+            AllowPaging="true"
+            PageSize="5"
+            AllowSorting="true"
+            AutoHidePaging="true"
+            OnRowDoubleClick="OnRowDoubleClick"
+            Responsive="true"
+            Unit="Unit.Px">
+
+                <GridColumns>
+                    <div class="rowA"> 
+                        <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID" SortKeySelector="item => item.Notes_GUID">
+                            @context.Notes_GUID
+                        </GridColumn>
+                    </div>
+                    <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name" SortKeySelector="item => item.Application_Name">
+                        @context.Application_Name
+                    </GridColumn>
+                    <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content" SortKeySelector="item => item.Note_Content">
+                        @context.Note_Content
+                    </GridColumn>
+                    <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by" SortKeySelector="item => item.Created_by">
+                        @context.Created_by
+                    </GridColumn>
+                    <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date" SortKeySelector="item => item.Created_date">
+                        @context.Created_date.ToString("dd MMM yyyy")
+                    </GridColumn>
+                </GridColumns>
+
+            </Grid>
+        </div>
+        <p>
+            <!--Button to navigate to add page-->
+            <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Add Another Release Note </Button>
+            <!--Button to navigate to view deleted records page-->
+            <Button Type="ButtonType.Link" Color="ButtonColor.Danger" To="/deletedrecords"> View Deleted Records </Button>
+            <!--Button to refresh the page-->
+            <Button Color="ButtonColor.Secondary" @onclick=Refresh> Refresh </Button>
 
 
-
-    OnRowDoubleClick="OnRowDoubleClick"
-    Responsive="true"
-    Unit="Unit.Px">
-
-        <GridColumns>
-            <div class="rowA"> 
-                <GridColumn TItem="ReleaseNotesModel" HeaderText="Notes GUID" PropertyName="Notes_GUID" SortKeySelector="item => item.Notes_GUID">
-                    @context.Notes_GUID
-                </GridColumn>
-            </div>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Application Name" PropertyName="Application_Name" SortKeySelector="item => item.Application_Name">
-                @context.Application_Name
-            </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Release Note" PropertyName="Note_Content" SortKeySelector="item => item.Note_Content">
-                @context.Note_Content
-            </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Created By" PropertyName="Created_by" SortKeySelector="item => item.Created_by">
-                @context.Created_by
-            </GridColumn>
-            <GridColumn TItem="ReleaseNotesModel" HeaderText="Created Date" PropertyName="Created_date" SortKeySelector="item => item.Created_date">
-                @context.Created_date.ToString("dd MMM yyyy")
-            </GridColumn>
-        </GridColumns>
-
-    </Grid>
-</div>
-<p>
-    <Button Type="ButtonType.Link" Color="ButtonColor.Primary" To="/add"> Add Another Release Note </Button>
-    <Button Type="ButtonType.Link" Color="ButtonColor.Danger" To="/deletedrecords"> View Deleted Records </Button>
-    <Button Color="ButtonColor.Secondary" @onclick=Refresh> Refresh </Button>
-
-
-</p>
-
+        </p>
+    </main>
+</body>
 <!--Template for the note deleting modal-->
-<Modal @ref="viewModal" title="Release Note" IsVerticallyCentered="true" IsScrollable="true" Size="ModalSize.Large">
+<Modal @ref="modal" title="Release Note" IsVerticallyCentered="true" IsScrollable="true" Size="ModalSize.Large">
     <BodyTemplate>
 
-        <p>
+        <p class="modal-text">
             @notes_guid
             <br />
             @application_name
@@ -90,7 +101,7 @@
             @created_date
         </p>
         <div class="form-group row mb-3">
-            <label class="text-input-label">Reason for deleted record: <span class="text-danger">*</span></label>
+            <label class="text-input-label">Reason for deleting record: <span class="text-danger">*</span></label>
             <div class="col-md-10">
                 <TextAreaInput @bind-Value="@reasonForDeletion" Rows="3" Placeholder="Enter Reason for Deletion:" />
 
@@ -98,26 +109,30 @@
         </div>
     </BodyTemplate>
     <FooterTemplate>
-        <Button Color="ButtonColor.Secondary" @onclick="HideViewModal">Close</Button>
+        <Button Color="ButtonColor.Secondary" @onclick="HideModal">Close</Button>
+        <Button Color="ButtonColor.Secondary" @onclick="ClearForm">Clear Form</Button>
         <Button Color="ButtonColor.Danger" @onclick="DeleteNote">Delete Record</Button>
     </FooterTemplate>
 </Modal>
 
 
 @code {
-    int counter = 0;
+    
     bool selected = false;
+    //injection of the ModalService
     [Inject] ModalService ModalService { get; set; } = default!;
-    private Modal viewModal = default!; 
-    private Modal deleteModal = default!;
-    //declare a list to store the release notes data
+    //reference to the modal
+    private Modal modal = default!; 
+    
+    //declare a list to populate the grid with the release notes data
     List<ReleaseNotesModel> notes = new();
     //declare the user
     private UserModel currentUser;
+    //declare the grid to display the release notes data
     private Grid<ReleaseNotesModel> grid;
-    private HashSet<ReleaseNotesModel> selectedNote = new();
+
     int numNotes = 0;
-    //private String message ="";
+    //declare variables to store the values of the selected note
     private String notes_guid = "";
     private String application_name = "";
     private String note_content = "";
@@ -126,6 +141,7 @@
     private String reasonForDeletion = "";
     private String fullName = "";
     private DateTime note_date;
+
     protected async override Task OnInitializedAsync()
     {
         //Check if user is signed in
@@ -140,11 +156,10 @@
         try
         {
             string sql = "select * from ReleaseNotes"; 
-
+            //call the LoadReleaseNotes function from the ReleaseNotesData.cs file to return a list of the release notes
             notes = await _notesData.LoadReleaseNotes<ReleaseNotesModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+            //store the number of rows in the ReleaseNotes table
             numNotes = notes.Count;
-            //var connectionString = _config.GetConnectionString("default");
-            //Console.WriteLine($"Connection String: {connectionString}");
         }
         catch (Exception e)
         {
@@ -159,130 +174,84 @@
     }
 
     private async Task OnRowDoubleClick(GridRowEventArgs<ReleaseNotesModel> args)
-    {
-        Console.WriteLine($"Item: {args.Item}");
-        Console.WriteLine($"Note_Content: {args.Item?.Note_Content}");
-        //await ModalService.ShowAsync(new ModalOption { Type = ModalType.Primary, Title = "Release Note", Message = $"{args.Item?.Note_Content}", Scrollable=true });
-        //await modal.ShowAsync<EmployeeDemoComponent1>(title: "Release Note", parameters: $"{args.Item?.Note_Content}");
-        // selectedNote = $"Note: {args.Item?.Note_Content}";
+    {//upon double clicking a row in the grid, display the delete modal with the release note data of the selected row
+        //each value is pulled from the grid and stored in a variable to be displayed in the modal
         notes_guid = $"{args.Item?.Notes_GUID}";
         application_name = $"{args.Item?.Application_Name}";
         note_content = $"{args.Item?.Note_Content}";
         created_by = $"{args.Item?.Created_by}";
         created_date = $"{args.Item?.Created_date}";
-        await viewModal.ShowAsync(); // Show modal
-    }
-    private async Task HideViewModal()
-    {
-        await viewModal.HideAsync();
+        await modal.ShowAsync(); // Show modal
     }
 
-
-    private async Task showDeleteModal(GridRowEventArgs<ReleaseNotesModel> args)
+    //hide the modal
+    private async Task HideModal()
     {
-
-        //await ModalService.ShowAsync(new ModalOption { Type = ModalType.Primary, Title = "Release Note", Message = $"{args.Item?.Note_Content}", Scrollable=true });
-        /*Notes_GUID = $"Note GUID: {args.Item?.Notes_GUID}";
-        Application_Name = $"Application_Name: {args.Item?.Application_Name}";
-        Note_Content = $"Note Content: {args.Item?.Note_Content}";
-        Created_by = $"Created By: {args.Item?.Created_by}";
-        Created_date = $"Created Date: {args.Item?.Created_date}";
-        */
-                                await viewModal.ShowAsync(); // Show modal
-    }
-    private async Task HideDeleteModal()
-    {
-        await deleteModal.HideAsync();
-    }
-    private Task OnSelectedItemsChanged(HashSet<ReleaseNotesModel> notes)
-    {
-        selectedNote = notes is not null && notes.Any() ? notes : new();
-        selected = true;
-        return Task.CompletedTask;
-    }
-    public void Checking()
-    {
-
-        if (selectedNote != null)
-        {
-            counter++;
-            Console.WriteLine(selectedNote);
-        }
+        await modal.HideAsync();
     }
 
+    //function to insert the selected note into the DeletedNotes table and delete it from the ReleaseNotes table
     private async Task DeleteNote()
     {
-        try //maybe get rid of this, we have too many try-catches
+        
+        try //first insert the ReleaseNote into the DeletedNotes table
         {
+            string insertSql = "insert into DeletedNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date, Deletion_reason, Deleted_by) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @note_date, @reasonForDeletion, @fullName);";
 
-            try //first insert the ReleaseNote into the DeletedNotes table
+            //close the modal
+            await HideModal();
+            //convert the created_date string back to a DateTime object
+            note_date = DateTime.Parse(created_date);
+
+            //set the parameters and call the task to insert the selected note into the DeletedNotes table, I made it vertical for readability
+            await _notesData.ExecuteSql(insertSql, new
             {
-                string insertSql = "insert into DeletedNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date, Deletion_reason, Deleted_by) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @note_date, @reasonForDeletion, @fullName);";
-
-                //close the modal
-                await HideViewModal();
-                note_date = DateTime.Parse(created_date);
-                Console.WriteLine("date created: " + created_date);
-                Console.WriteLine("date sent: " + note_date);
-                //structure the task call to insert the new note into the database, I made it vertical for readability
-                await _notesData.ExecuteSql(insertSql, new
-                {
-                    notes_guid,
-                    application_name,
-                    note_content,
-                    created_by,
-                    note_date,
-                    reasonForDeletion,
-                    fullName = currentUser.FirstName + " " + currentUser.LastName
-                }, _config.GetConnectionString("default"));
-
-                Console.WriteLine("date created: " + created_date);
-                Console.WriteLine("date sent: " + note_date);
-
-            }
-            catch (Exception e)
-            {//if there is an error, display whether or not the note was saved
-                Console.WriteLine(e.Message);
-            }
-
-
-
-            try //then delete
-            {
-                //sql query to delete the selected note from the ReleaseNotes table in the database
-                string deleteSql = "delete from ReleaseNotes where Notes_GUID = @notes_guid;";
-                await _notesData.ExecuteSql(deleteSql, new
-                {
-                    notes_guid
-
-                }, _config.GetConnectionString("default"));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            //refresh the page to reflect changes
-            Console.WriteLine("Refreshing...");
-            nav.NavigateTo("/view", forceLoad: true);
-
-           
-            // is the line below problematic?
-            await OnInitializedAsync();
+                notes_guid,
+                application_name,
+                note_content,
+                created_by,
+                note_date,
+                reasonForDeletion,
+                fullName = currentUser.FirstName + " " + currentUser.LastName
+            }, _config.GetConnectionString("default"));
         }
         catch (Exception e)
         {
-            Console.WriteLine("e.Message");
+            Console.WriteLine(e.Message);
         }
 
-    }
+        try //now delete the note from the ReleaseNotes table
+        {
+            //sql query to delete the selected note from the ReleaseNotes table in the database
+            string deleteSql = "delete from ReleaseNotes where Notes_GUID = @notes_guid;";
+            //execute the query
+            await _notesData.ExecuteSql(deleteSql, new
+            {
+                notes_guid
 
-    public void Refresh()
-    {
-
+            }, _config.GetConnectionString("default"));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        //refresh the page to reflect changes
         nav.NavigateTo("/view", forceLoad: true);
     }
 
+    //function that refreshes the page by navigating to the same page and forcing a reload
+    public void Refresh()
+    {
+        nav.NavigateTo("/view", forceLoad: true);
+    }
+
+    protected void ClearForm()
+    {
+        //clear input from the form
+        //essentially setting the string in the input text area to empty
+        reasonForDeletion = "";
+      
+    }
 }
     
 

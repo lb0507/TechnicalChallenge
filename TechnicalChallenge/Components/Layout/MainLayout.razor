@@ -1,16 +1,13 @@
 ﻿@inherits LayoutComponentBase
 @using BlazorBootstrap.Components
-
+<!--The default layout for the razor pages-->
 <div class="page">
 
     <main>
         <div class="top-row px-4">
-            <div class="split left">
-               
-            </div>
-            <div class="split right">
-                <SignOutButton />
-            </div>
+           <!--Put a bar across the top of the page with the Home button and Sign out button-->
+            <a><SignOutButton/></a>
+
         </div>
 
         <article class="content px-4">

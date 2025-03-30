@@ -1,33 +1,10 @@
-/* _content/TechnicalChallenge/Components/DashboardButton.razor.rz.scp.css */
-
-.dashboard[b-7yfv747zac] {
-    margin-right:70%;
-    background-color: whitesmoke;
-    border-color: rgb(25, 101, 214);
-    color: rgb(25, 101, 214);
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 100px;
-    font-size: 15px;
-    transition: background-color 0.7s, color 0.7s;
-    
-}
-
-.dashboard:hover[b-7yfv747zac] {
-    background-color: rgb(25, 101, 214);
-    color: white;
-}
-
-.dashboard:active[b-7yfv747zac] {
-    opacity: 0.7;
-}
 /* _content/TechnicalChallenge/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-joyh1zgqeh] {
-    display: inline-grid;
+    
     position: relative;
     display: flex;
     flex-direction: column;
-   
+    background-color: rgb(158, 179, 194);
 }
 
 main[b-joyh1zgqeh] {
@@ -39,8 +16,7 @@ main[b-joyh1zgqeh] {
 }
 
 .top-row[b-joyh1zgqeh] {
-    background-color: rgb(158, 179, 194);
-    
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -49,7 +25,7 @@ main[b-joyh1zgqeh] {
  
     .top-row[b-joyh1zgqeh]  a, .top-row[b-joyh1zgqeh]  .btn-link {
         white-space: nowrap;
-        margin-left: 1.5rem;
+        margin-left: 1.0rem;
         text-decoration: none;
         row-gap: 50px;
     }
@@ -78,12 +54,6 @@ main[b-joyh1zgqeh] {
         flex-direction: row;
     }
 
-    .sidebar[b-joyh1zgqeh] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
 
     .top-row[b-joyh1zgqeh] {
         position: sticky;
@@ -227,13 +197,131 @@ main[b-joyh1zgqeh] {
         overflow-y: auto;
     }
 }
-/* _content/TechnicalChallenge/Components/Pages/Deleted.razor.rz.scp.css */
-body[b-yup2vx7b38] {
+/* _content/TechnicalChallenge/Components/Pages/Add.razor.rz.scp.css */
+body[b-9melgoprkx] {
+    background-color: rgb(8, 103, 136);
+    margin-top: 0px;
+    font-family: "Arial", Sans-serif;
 }
-/* _content/TechnicalChallenge/Components/Pages/Example.razor.rz.scp.css */
-h1[b-5h4vjmmbof] {
-    color: brown;
-    font-family: Tahoma, Geneva, Verdana, sans-serif;
+.top-row[b-9melgoprkx] {
+   
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
+    height: 3.0rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+   
+}
+h3[b-9melgoprkx] {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+    color: floralwhite;
+}
+p[b-9melgoprkx] {
+    margin-left: 20px;
+    color: floralwhite;
+    font-size: 20px;
+}
+.application-selection[b-9melgoprkx] {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.editform[b-9melgoprkx] {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    box-sizing: border-box;
+   
+    color: floralwhite;
+    background-color: rgb(7, 160, 195);
+    border-radius: 50px;
+    padding-left: 10%;
+    padding-right: 80px;
+    padding-bottom: 50px;
+}
+
+.form-group[b-9melgoprkx] {
+    width: 500px;
+    margin: auto;
+   
+
+}
+/* _content/TechnicalChallenge/Components/Pages/Confirmation.razor.rz.scp.css */
+body[b-re23o9iu96] {
+}
+h3[b-re23o9iu96] {
+    margin-top: 20px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+    color: floralwhite;
+}
+p[b-re23o9iu96] {
+    color: floralwhite;
+    font-size: 20px;
+}
+div[b-re23o9iu96] {
+    background-image: linear-gradient(180deg, rgb(7, 160, 195) 0%, rgb(8, 103, 136) 90%);
+    width: 50%;
+    margin: auto;
+    padding: 5%;
+    border-radius: 50px;
+    margin-top: 10%;
+    display: block;
+    text-align: center;
+    color: floralwhite;
+}
+/* _content/TechnicalChallenge/Components/Pages/Deleted.razor.rz.scp.css */
+
+body[b-yup2vx7b38] {
+    background-color: rgb(7, 160, 195);
+}
+
+.top-row[b-yup2vx7b38] {
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
+    height: 3.0rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+}
+
+main[b-yup2vx7b38] {
+    display: block;
+    background-image: linear-gradient(180deg, rgb(8, 103, 136) 0%, rgb(7, 160, 195) 50%);
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.grid-content[b-yup2vx7b38] {
+   
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h3[b-yup2vx7b38] {
+    display: inline-grid;
+    margin-bottom: 1rem;
+    color: floralwhite;
+    padding-top: 2%;
+    padding-left: 2%;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+p[b-yup2vx7b38] {
+    color: floralwhite;
+    padding-left: 2%;
+}
+
+.modal-text[b-yup2vx7b38] {
+    color: black;
+    line-height: 2;
 }
 /* _content/TechnicalChallenge/Components/Pages/Home.razor.rz.scp.css */
 
@@ -271,7 +359,7 @@ h1[b-0i4holn1fo] {
     padding: 40px 30px;
     text-align: center;
     background-color: rgb(212, 81, 19);
-    color: whitesmoke;
+    color: floralwhite;
     font-family: monospace, "Lucida Console", "Courier New";
     font-size: 35px;
     font-weight: bold;
@@ -285,17 +373,24 @@ h1[b-0i4holn1fo] {
 p[b-0i4holn1fo] {
     font-size: 28px;
     font-family: monospace, "Lucida Console", "Courier New";
-    color: whitesmoke;
+    color: floralwhite;
     margin-top: 100px;
     margin-left: 10%;
     width: 75%;
 }
 
 
-
+.top[b-0i4holn1fo] {
+    box-sizing: border-box;
+   
+}
+.bottom[b-0i4holn1fo] {
+    box-sizing: border-box;
+    top: 55%;
+}
 
 .add[b-0i4holn1fo] {
-    color: whitesmoke;
+    color: floralwhite;
     font-size: 26px;
     font-family: monospace, "Lucida Console", "Courier New";
     border: none;
@@ -305,10 +400,9 @@ p[b-0i4holn1fo] {
     background-color: rgb(7, 160, 195);
     margin-top: 0%;
     display: inline-block;
-    
     box-sizing: border-box;
     transition: opacity 0.5s;
-    height: 390px;
+    height: 52%;
 }
 
 .add:hover[b-0i4holn1fo] {
@@ -320,17 +414,16 @@ p[b-0i4holn1fo] {
 }
 
 .view[b-0i4holn1fo] {
-    color: whitesmoke;
+    color: floralwhite;
     font-size: 26px;
     font-family: monospace, "Lucida Console", "Courier New";
     border: none;
     border-radius: 0px;
-    height: 379px;
+    height: 51%;
     width: 100%;
     cursor: pointer;
     background-color: rgb(8, 103, 136);
     transition: opacity 0.5s;
-    
 }
 
 .view:hover[b-0i4holn1fo] {
@@ -348,88 +441,107 @@ main-layout[b-0i4holn1fo] {
 }
 /* _content/TechnicalChallenge/Components/Pages/SignIn.razor.rz.scp.css */
 
-.container[b-62wugeadc5] {
-    display: inline-grid;
-    background-color: rgb(158, 179, 194);
-   
-    height: 93.2%;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    overflow-x: hidden;
-}
 
-.header[b-62wugeadc5] {
+.page[b-62wugeadc5] {
+    background-image: linear-gradient(180deg, rgb(0, 115, 156) 0%, rgb(4, 166, 172) 50%);
+    height: 100vh;
+    font-family: "Courier New", "Lucida Console", monospace;
+    
+}
+header[b-62wugeadc5] {
+    
     text-align: center;
-    background: rgb(8, 103, 136);
-    color: white;
-    font-size: 30px;
-
-
+    color: floralwhite;
+    top: 0;
+   
+   
 }
 
+h1[b-62wugeadc5] {
+    padding-top: 50px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 100px;
+    font-weight: 500;
+}
+
+.content[b-62wugeadc5] {
+    padding-top: 10%;
+    display: inline;
+    margin: auto;
+   
+}
 .email-field[b-62wugeadc5] {
+    display: block;
+    margin: auto;
     border-radius: 5px;
-    border: 0.5px solid lightgray;
-    background-color: whitesmoke;
+    border: 0.5px solid floralwhite;
+    background-color: floralwhite;
     font-size: 14px;
     width: 30%;
     margin-top: 100px;
-    margin-left: 460px;
+
 }
 
 
 .password-field[b-62wugeadc5] {
+    display: block;
+    margin: auto;
     border-radius: 5px;
-    border: 0.5px solid lightgray;
-    background-color: whitesmoke;
+    border: 0.5px solid floralwhite;
+    background-color: floralwhite;
     font-size: 14px;
     width: 30%;
     margin-top: 50px;
-    margin-left: 460px;
 }
 
-.checkbox[b-62wugeadc5] {
-    margin-left: 460px;
+#chkbx[b-62wugeadc5] {
+    display: block;
+    width: 5%;
+    margin: auto;
+    font-weight: 600;
 }
 
 .btn[b-62wugeadc5] {
-    background-color: rgb(212, 81, 19); /*rgb(212, 81, 19)(249, 160, 63)*/
+    display: block;
+    margin: auto;
+    background-color: rgb(212, 81, 19);
     color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 50px;
-    transition: opacity 0.5s;
+    margin-top: 30px;
+    width: 10%;
+    transition: background-color 0.5s;
+    transition: color 0.2s;
+    font-weight: 600;
 }
 
 .btn:hover[b-62wugeadc5] {
-    opacity: 0.6;
+    background-color: rgb(230, 116, 41);
 }
 
 .btn:active[b-62wugeadc5] {
     color: black;
-}
-
-.btn-login[b-62wugeadc5] {
-    margin-left: 525px;
-    width: 8%;
-}
-
-.btn-clear[b-62wugeadc5] {
-    margin-left: 50px;
-}
-
-body[b-62wugeadc5] {
     background-color: rgb(249, 160, 63);
 }
+
+
 /* _content/TechnicalChallenge/Components/Pages/View.razor.rz.scp.css */
 
-.container[b-f6m5j3twh4] {
-    display: inline-grid;
-    background-color: rgb(7, 160, 195);
-    height: 100%;
+.top-row[b-f6m5j3twh4] {
+
+    background-image: linear-gradient(180deg, rgb(158, 179, 194) 0%, rgb(108, 129, 144) 100%);
+    height: 3.0rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    
+}
+
+main[b-f6m5j3twh4] {
+    display: block;
+    height: 94vh;
+    background-image: linear-gradient(180deg, rgb(249, 160, 63) 0%, rgb(212, 81, 19) 170%);
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
@@ -438,41 +550,58 @@ body[b-62wugeadc5] {
 
 
 .grid-content[b-f6m5j3twh4] {
-    background-color: rgb(250, 200, 110);
+    padding: 20px;
+    padding-top: 0;
 }
-.rowA[b-f6m5j3twh4] {
-   
-}
+
 h3[b-f6m5j3twh4] {
     display: inline-grid;
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 40px;
+    font-weight: 600;
     margin-bottom: 1rem;
-    color: whitesmoke;
+    color: floralwhite;
+    padding-top: 2%;
+    padding-left: 2%;
+    
+}
+
+p[b-f6m5j3twh4] {
+    color: floralwhite;
+    padding-left: 2%;
+    line-height: 1;
+    
+}
+.modal-text[b-f6m5j3twh4] {
+    color: black;
+    line-height: 2;
 }
 /* _content/TechnicalChallenge/Components/SignOutButton.razor.rz.scp.css */
 .container[b-57zp86n77n] {
     margin-top: 0%;
-    margin-left: 90%;
-    color: darkblue
+    padding-right: 30px;
+    display: inline-block;
+    float: right;
+    color: floralwhite;
 }
 
-
 .dashboard[b-57zp86n77n] {
-    margin-right: 70%;
-    background-color: whitesmoke;
-    border-color: rgb(25, 101, 214);
-    color: rgb(25, 101, 214);
+    background-color: floralwhite;
+    border-color: rgb(8, 103, 136);
+    color: rgb(8, 103, 136);
     cursor: pointer;
     font-weight: bold;
     border-radius: 100px;
     font-size: 15px;
     transition: background-color 0.7s, color 0.7s;
+    margin-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
     .dashboard:hover[b-57zp86n77n] {
-        background-color: rgb(25, 101, 214);
-        color: white;
+        background-color: rgb(8, 103, 136);
+        color: floralwhite;
     }
 
     .dashboard:active[b-57zp86n77n] {

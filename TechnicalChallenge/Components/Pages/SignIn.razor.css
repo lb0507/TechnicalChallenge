@@ -1,77 +1,86 @@
 ﻿
-.container {
-    display: inline-grid;
-    background-color: rgb(158, 179, 194);
-   
-    height: 93.2%;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    overflow-x: hidden;
-}
 
-.header {
+.page {
+    background-image: linear-gradient(180deg, rgb(0, 115, 156) 0%, rgb(4, 166, 172) 50%);
+    height: 100vh;
+    font-family: "Courier New", "Lucida Console", monospace;
+    
+}
+header {
+    
     text-align: center;
-    background: rgb(8, 103, 136);
-    color: white;
-    font-size: 30px;
-
-
+    color: floralwhite;
+    top: 0;
+   
+   
 }
 
+h1 {
+    padding-top: 50px;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 100px;
+    font-weight: 500;
+}
+
+.content {
+    padding-top: 10%;
+    display: inline;
+    margin: auto;
+   
+}
 .email-field {
+    display: block;
+    margin: auto;
     border-radius: 5px;
-    border: 0.5px solid lightgray;
-    background-color: whitesmoke;
+    border: 0.5px solid floralwhite;
+    background-color: floralwhite;
     font-size: 14px;
     width: 30%;
     margin-top: 100px;
-    margin-left: 460px;
+
 }
 
 
 .password-field {
+    display: block;
+    margin: auto;
     border-radius: 5px;
-    border: 0.5px solid lightgray;
-    background-color: whitesmoke;
+    border: 0.5px solid floralwhite;
+    background-color: floralwhite;
     font-size: 14px;
     width: 30%;
     margin-top: 50px;
-    margin-left: 460px;
 }
 
-.checkbox {
-    margin-left: 460px;
+#chkbx {
+    display: block;
+    width: 5%;
+    margin: auto;
+    font-weight: 600;
 }
 
 .btn {
-    background-color: rgb(212, 81, 19); /*rgb(212, 81, 19)(249, 160, 63)*/
+    display: block;
+    margin: auto;
+    background-color: rgb(212, 81, 19);
     color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 50px;
-    transition: opacity 0.5s;
+    margin-top: 30px;
+    width: 10%;
+    transition: background-color 0.5s;
+    transition: color 0.2s;
+    font-weight: 600;
 }
 
 .btn:hover {
-    opacity: 0.6;
+    background-color: rgb(230, 116, 41);
 }
 
 .btn:active {
     color: black;
-}
-
-.btn-login {
-    margin-left: 525px;
-    width: 8%;
-}
-
-.btn-clear {
-    margin-left: 50px;
-}
-
-body {
     background-color: rgb(249, 160, 63);
 }
+
+

@@ -33,7 +33,7 @@ h1[b-0i4holn1fo] {
     padding: 40px 30px;
     text-align: center;
     background-color: rgb(212, 81, 19);
-    color: whitesmoke;
+    color: floralwhite;
     font-family: monospace, "Lucida Console", "Courier New";
     font-size: 35px;
     font-weight: bold;
@@ -47,17 +47,24 @@ h1[b-0i4holn1fo] {
 p[b-0i4holn1fo] {
     font-size: 28px;
     font-family: monospace, "Lucida Console", "Courier New";
-    color: whitesmoke;
+    color: floralwhite;
     margin-top: 100px;
     margin-left: 10%;
     width: 75%;
 }
 
 
-
+.top[b-0i4holn1fo] {
+    box-sizing: border-box;
+   
+}
+.bottom[b-0i4holn1fo] {
+    box-sizing: border-box;
+    top: 55%;
+}
 
 .add[b-0i4holn1fo] {
-    color: whitesmoke;
+    color: floralwhite;
     font-size: 26px;
     font-family: monospace, "Lucida Console", "Courier New";
     border: none;
@@ -67,10 +74,9 @@ p[b-0i4holn1fo] {
     background-color: rgb(7, 160, 195);
     margin-top: 0%;
     display: inline-block;
-    
     box-sizing: border-box;
     transition: opacity 0.5s;
-    height: 390px;
+    height: 52%;
 }
 
 .add:hover[b-0i4holn1fo] {
@@ -82,17 +88,16 @@ p[b-0i4holn1fo] {
 }
 
 .view[b-0i4holn1fo] {
-    color: whitesmoke;
+    color: floralwhite;
     font-size: 26px;
     font-family: monospace, "Lucida Console", "Courier New";
     border: none;
     border-radius: 0px;
-    height: 379px;
+    height: 51%;
     width: 100%;
     cursor: pointer;
     background-color: rgb(8, 103, 136);
     transition: opacity 0.5s;
-    
 }
 
 .view:hover[b-0i4holn1fo] {

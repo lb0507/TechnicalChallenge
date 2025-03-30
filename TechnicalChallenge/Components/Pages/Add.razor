@@ -1,5 +1,15 @@
-﻿@page "/add"
+﻿@*
+
+    The page to add release note records to the database.
+    Version 3.30.25
+
+*@
+
+<!-- Link to the page -->
+@page "/add"
 @rendermode InteractiveServer
+@layout EmptyLayout
+
 @using DataLibrary
 @using DataLibrary.Models
 @using Microsoft.Extensions.Configuration
@@ -14,39 +24,51 @@
 
 <PageTitle>Add Records</PageTitle>
 <Modal IsServiceModal="true" />
-<h3>Release Notes Management Tool</h3>
-<p>Create a New Release Note Record</p>
-<p>Please enter the Release Note details using the form below:</p>
+<body>
+    <!--This page is not using the MainLayout, so we have to add the sign-out/dashboard navigation bar to to the top of the page-->
+    <div class="top-row px-4">
+        <a><SignOutButton /></a>
+    </div>
+    <h3>Release Notes Management Tool</h3>
+    <p>Create a New Release Note Record</p>
+    <p>Please enter the Release Note details using the form below:</p>
+    <div class="editform">
+        <!--Form to add a new release note, it's an EditForm with EditContext using OnValidSubmit-->
+        <!--This means it checks if the form is valid before we submit it, which prevents users from populating the database with invalid entries-->
+        <!--In this case, we are checking to see if the input text field for Note_Content is null-->
+        <EditForm EditContext="@editContext" OnValidSubmit="ConfirmAction" >
+            <DataAnnotationsValidator />
+            <div class="application-selection">
+                <!--A drop-down menu to select the Application_Name-->
+                <label class="select-input-label">Application: <span class="text-danger">*</span></label>
+                <select class="select-element" @bind="ReleaseNotes.Application_Name">
+                    <option value="" disabled selected>Select an Application...</option>
+                    <option value="Invoice Management Tool">Invoice Management Tool</option>
+                    <option value="Parts Management Tool">Parts Management Tool</option>
+                </select>
+            </div>
 
-<!--Form to add a new release note, it's an EditForm with EditContext using OnValidSubmit-->
-<!--This means it checks if the form is valid before we submit it, which prevents users from populating the database with invalid entries-->
-<!--In this case, we are checking to see if the input text field is null-->
-<EditForm EditContext="@editContext" OnValidSubmit="ConfirmAction" >
-    <DataAnnotationsValidator />
-    <label class="select-input-label">Application: <span class="text-danger">*</span></label>
-    <select class="select-element" @bind="ReleaseNotes.Application_Name">
-        <option value="" disabled selected>Select an Application...</option>
-        <option value="Invoice Management Tool">Invoice Management Tool</option>
-        <option value="Parts Management Tool">Parts Management Tool</option>
-    </select>
-    <div class="form-group row mb-3">
-        <label class="text-input-label">Release Note Text: <span class="text-danger">*</span></label>
-        <div class="col-md-10">
-            <TextAreaInput @bind-Value="@ReleaseNotes.Note_Content" Rows="3" Placeholder="Enter Release Note" />
-            <ValidationMessage For="@(() => ReleaseNotes.Note_Content)" />
-        </div>
-    </div>
-    
-    <div class="col-md-12 text-right">
-    <input type="submit" value="Save Record" class="btn btn-primary" />
+            <div class="form-group row mb-3">
+                <label class="text-input-label">Release Note Text: <span class="text-danger">*</span></label>
+                <div class="col-md-10">
+                    <!--The text input field for Note_Content-->
+                    <TextAreaInput @bind-Value="@ReleaseNotes.Note_Content" Rows="3" Placeholder="Enter Release Note" />
+                    <ValidationMessage For="@(() => ReleaseNotes.Note_Content)" />
+                </div>
+            </div>
         
-    </div>
+            <div class="col-md-12 text-right">
+                <!--The button to save the record-->
+                <input type="submit" value="Save Record" class="btn btn-primary" />
+                <!--A button that clears all input from the form, i.e. resets it-->
+                <button class="btn btn-secondary" @onclick="ClearForm">Clear Form</button>
+            </div>
     
    
-</EditForm>
+        </EditForm>
+    </div>
 
-<!--A button that clears all input from the form, i.e. resets it-->
-<button class="btn btn-primary" @onclick="ClearForm">Clear Form</button>
+</body>
 
 <!--The template for the modal to confirm the save-->
 <Modal @ref="confirmActionModal" title="Confirm Save" UseStaticBackdrop="true" CloseOnEscape="false">
@@ -54,7 +76,9 @@
         Are you sure you wish to save this record?
     </BodyTemplate>
     <FooterTemplate>
+        <!--Cancel button to go back to the release note edit form-->
         <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Cancel</Button>
+        <!--button to confirm and go through with inserting the new release note record into the table-->
         <Button Color="ButtonColor.Primary" @onclick="NoteAdded">Confirm</Button>
     </FooterTemplate>
 </Modal>
@@ -76,8 +100,6 @@
     }
     private bool saved = false;
     private string userFullName = "";
-    
-    //I dont think this is used List<ReleaseNotesModel> notes = new();
 
     //declare the user
     private UserModel currentUser;
@@ -91,70 +113,54 @@
         {
             nav.NavigateTo("/signin");
         }
-
-
     }
+    //method to add the new release note record to the database
     private async Task NoteAdded() 
     {                              
+        //concatenate the user's first and last name to create the value for the Created_by field
+        ReleaseNotes.Created_by = currentUser.FirstName + " " + currentUser.LastName;
+
+        //get and store the date the form was submitted
+        ReleaseNotes.Created_date = DateTime.Now;
+
+        //sql query to insert the new note into the database
+        string sql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @Created_date);";
+        //generate a new GUID for the note id, convert it to a string to match the type in the database
+        string Notes_GUID = Guid.NewGuid().ToString();
         try
         {
-            //concatenate the user's first and last name to create the Created_by field
-            ReleaseNotes.Created_by = currentUser.FirstName + " " + currentUser.LastName;
-            Console.WriteLine(userFullName);
-
-            //get and store the date the form was submitted
-            ReleaseNotes.Created_date = DateTime.Now;
-
-            //debugging statements, can remove
-           
-            Console.WriteLine(ReleaseNotes.Application_Name);
-            Console.WriteLine(ReleaseNotes.Note_Content);
-
-            //sql query to insert the new note into the database
-            string sql = "insert into ReleaseNotes (Notes_GUID, Application_Name, Note_Content, Created_by, Created_date) values (@Notes_GUID, @Application_Name, @Note_Content, @Created_by, @Created_date);";
-            //generate a new GUID for the note id, convert it to a string to match the type in the database
-            string Notes_GUID = Guid.NewGuid().ToString();
-            try
-            {
-                //close the modal
-                await OnHideModalClick();
+            //close the modal
+            await OnHideModalClick();
                 
-                //structure the task call to insert the new note into the database, I made it vertical for readability
-                await _notesData.SaveNote(sql, new
-                {
-                    Notes_GUID,
-                    Application_Name = ReleaseNotes.Application_Name,
-                    Note_Content = ReleaseNotes.Note_Content,
-                    Created_by = ReleaseNotes.Created_by,
-                    Created_date = ReleaseNotes.Created_date
-                }, _config.GetConnectionString("default"));
+            //structure the task call to insert the new note into the database, I made it vertical for readability
+            await _notesData.ExecuteSql(sql, new
+            {
+                Notes_GUID,
+                Application_Name = ReleaseNotes.Application_Name,
+                Note_Content = ReleaseNotes.Note_Content,
+                Created_by = ReleaseNotes.Created_by,
+                Created_date = ReleaseNotes.Created_date
+            }, _config.GetConnectionString("default"));
                
-                //set the ReleaseNotesModel in ReleaseNotesData to the new note so we can display it on the confirmation page
-                //Since we altered the model to check for valid input, there was an error trying to set the note directly
-                //thus we set it by parameter
-                _notesData.SetNoteByParam(Notes_GUID, ReleaseNotes.Application_Name, ReleaseNotes.Note_Content, ReleaseNotes.Created_by, ReleaseNotes.Created_date);
+            //set the ReleaseNotesModel in ReleaseNotesData to the new note so we can display it on the confirmation page
+            //Since we altered the model to check for valid input, there was an error trying to set the note directly
+            //thus we set it by individual values
+            _notesData.SetNoteByParam(Notes_GUID, ReleaseNotes.Application_Name, ReleaseNotes.Note_Content, ReleaseNotes.Created_by, ReleaseNotes.Created_date);
 
-                //if we made it to here without an exception, the note was saved
-                saved = true;
+            //if we made it to here without an exception, the note was saved
+            saved = true;
 
                 
-            }
-            catch (Exception e)
-            {//if there is an error, display whether or not the note was saved
-                Console.WriteLine("Note saved: " + saved);
-            }
-
-            //if the note was successfully inserted, navigate to the confirmation page
-            if (saved)
-            {
-                nav.NavigateTo("/confirmation");
-            }
-            // is the line below problematic?
-            await OnInitializedAsync();
         }
         catch (Exception e)
+        {//if there is an error, display on console whether or not the note was saved
+            Console.WriteLine("Note saved: " + saved);
+        }
+
+        //if the note was successfully inserted, navigate to the confirmation page
+        if (saved)
         {
-            Console.WriteLine("e.Message");
+            nav.NavigateTo("/confirmation");
         }
 
     }
@@ -167,24 +173,22 @@
         ReleaseNotes = new ReleaseNotesModel();
         editContext = new EditContext(ReleaseNotes);
     }
-
+    //declare the modal that will be used to confirm the save
     private Modal confirmActionModal = default!;
+
+    //method to show the modal to confirm the save
     private async Task ConfirmAction()
     {
-        //I need to check if the below line is still necessary
-        //It might be good to have anyways
-        //but it might also be redundant
+        //check that the form is valid before showing the modal
         if (editContext.Validate())
         {
-            Console.WriteLine("confirm running");
             await confirmActionModal.ShowAsync();
         }
     }
     //user selected cancel on the modal, close it
     private async Task OnHideModalClick()
     {
-        await confirmActionModal.HideAsync();
-        
+        await confirmActionModal.HideAsync();  
     }
 
     //declare the required fields for the new release note submission 
