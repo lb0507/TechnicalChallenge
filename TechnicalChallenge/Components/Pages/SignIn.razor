@@ -69,14 +69,14 @@
 
             //pass the sql query and hashed password as parameters to the LogIn function from UserData.cs
             bool successful = await _data.LogIn<bool, dynamic>(sql, new {email = Usr.email}, hashedPassword, _config.GetConnectionString("default"));
+
             if (successful)
             {//Login successful if true was returned, direct the user to the home page
                 nav.NavigateTo("/");
             }
             else
             {//the login was not successful, clear the input fields
-                ClearForm();
-                
+                ClearForm();          
             }
         }
         catch (Exception e)

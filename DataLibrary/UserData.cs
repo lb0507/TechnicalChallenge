@@ -31,8 +31,14 @@ namespace DataLibrary
             //find the user in the database with the matching email, then check if the password matches
             using (IDbConnection connection = new MySqlConnection(connectionString))
             {
-                UserModel result = await connection.QuerySingleAsync<UserModel>(sql, parameters);
-                if (result.userpassword == password)
+                UserModel result = await connection.QuerySingleOrDefaultAsync<UserModel>(sql, parameters);
+
+                if (result == null)
+                {
+                    //there is no user with the email, return false
+                    return false;
+                }
+               else if (result.userpassword == password)
                 {
                     //password matches set the model to the user's data and return tru
                     _model = result;
